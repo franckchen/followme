@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>匿名函数实现命名空间</title>
+</head>
+<body>
+<script>
+    // 假设公司来了个程序员A.他需要为这个页面写一份代码，功能很简单，打就是当前页面的路径
+    (function () {
+        // 小A喜欢用cf作为他变量的名字
+        var cf = location.href;
+        console.log(cf);
+    })();
+
+    // 突然某一天，公司又来了个程序员B,他需要扩展下这个页面的功能，打印下时间戳
+    // 他也喜欢用cf作为自己的变量名...
+    (function () {
+        // 由于两个人用了匿名函数自调用的方式，实现了命名空间，所以他们虽然都用了cf这个变量，
+        // 但是由于有命名空间的隔离效应，没有互相影响对方的代码，很好...
+        // 我们不能指望每个人记下来前人代码中是否用过某个名称来命名一个变量，所以命名空间在大项目中有一定用途
+        // js中不向c++、php等其他语言，没有namespace这个概念，但是可以通过匿名函数来模拟
+        var cf = Date.now();
+        console.log(cf);
+    })();
+</script>
+<!-- 而如果小A和小B不懂得搞命名空间，来看一下结果吧 -->
+<script>
+    // 小A喜欢用cf作为他变量的名字
+    var cf = location.href;
+    console.log(cf);
+</script>
+<script>
+    // 在此时cf变量是当前地址，而后我一旦修改该变量的值，很可能会影响小A的代码。。。
+    console.log(cf);
+    var cf = Date.now();
+    console.log(cf);
+</script>
+</body>
+</html>

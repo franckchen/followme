@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>sort函数</title>
+</head>
+<body>
+<script>
+    var originArray = [5, 2, 6, 1];
+
+    /**
+     * 默认情况下sort方法根据unicode码对于数组成员进行排序，由于数字在unicode码中是有序的，所以
+     * 返回的接口是将数组成员按大小进行了排序, 所以结果是[1, 2, 5, 6]
+     * 其实可以简单理解为调用sort后就按顺序排列了
+     */
+    console.log(originArray.sort());
+
+    /**
+     * 注意观察这里，originArray也变了！证明sort这个api是会污染原数组的
+     * 也就是说调用sort方法后，原数组（originArray）发生了变化，这个一定要注意的，学习api的时候
+     * 一定要注意哪些api是会污染调用对象的，能够规避很多bug
+     */
+    console.log(originArray);
+
+    /**
+     * 那么如何规避对于调用对象的污染呢？看下面的例子
+     */
+    // 定义个数组
+    var cf = [5, 2, 6, 1];
+    // 常用的一个trick, 调用后能够将数组进行一次拷贝
+    var mxy = cf.slice(0);
+
+    // mxy进行了排序
+    console.log(mxy.sort());
+    // mxy的排序没有影响cf，拷贝成功
+    console.log(cf);
+
+    // 另外一个拷贝数组的trick
+    mxy = cf.concat();
+
+    // 这样做是不行的,令mxy = cf.是令mxy引用cf
+    mxy = cf;
+    cf.sort();
+    // 由于是引用，虽然排序的是cf，但是最终结果还是影响了mxy,mxy的顺序也发生了变化,例子体现了拷贝的重要性
+    console.log(mxy);
+
+    /**
+     * 对于字母也能够有效的进行排序的
+     */
+    cf = ['b', 'r', 'a'];
+    console.log(cf.sort());
+
+    /**
+     * 演示下sort的另一个用法 -- 自定义排序
+     */
+    var myObj = [
+        {name: 'a', sort: 5},
+        {name: 'b', sort: 5},
+        {name: 'c', sort: 2},
+        {name: 'd', sort: 4}
+    ];
+
+    myObj.sort(function (a, b) {
+        /**
+         * 1.a可以理解为数组里前一个成员，b可以理解为后一个成员
+         * 2.根据return值决定成员位置是否调换，如果返回值大于0，那么不对调换，如果小于0，则调换
+         * 3.所以本函数调用的结果就是根据sort的值，对myObj数组里所有的对象根据sort值大小进行一次排序
+         * 4.整体原先过程是这个匿名函数会反复被调用，第一次a和b分别是第一个成员和第二个成员
+         * 根据返回值，决定是否对调位置，结束后，完成排序
+         */
+
+        // 可以打印出来观察函数调用过程
+        console.log(a, b);
+
+        return a.sort - b.sort;
+    });
+
+    // 排序完成，观察后发现，数组成员根据sort值排序了
+    console.log(myObj);
+</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>apply与call</title>
+</head>
+<body>
+<div class="cf">陈</div>
+<div class="cf">帆</div>
+<div class="cf">陈</div>
+<div class="cf">帆</div>
+<script>
+    // getElementsByClassName返回的是HTMLCollection对象，查找到所以class为cf的HTML元素，
+    // 组成一个类数组的对象--HTMLCollection
+    var list = document.getElementsByClassName('cf');
+
+    // 可以看出返回的变量类型是object
+    console.log(typeof list);
+    // 在控制台里观察一下输出__prototype__表示他继承了什么东西，原生api返回的多是
+    console.log(list);
+
+    // 此时调用list.forEach或者list.map妥妥的报错，因为object没有这些方法，这些方法是array的
+    // 那么就不能遍历了吗？no
+
+    /**
+     * 1.js中每个函数都有一个call和apply方法
+     * 2.js的一大特点就是一切皆是对象，所以这里要理解下为什么forEach这个方法能够有call这个成员，这个需要理解下的
+     * 3.下面这段代码可以理解为以list为上下文去调用forEach这个方法，call的第二个方法就是forEach
+     * 方法里的匿名函数，其实可以理解为forEach方法的第一个参数
+     * 4.最终模拟了将一个HTMLCollection通过一个数组的方法去完成了一次遍历
+     */
+    Array.prototype.forEach.call(list, function (element) {
+        console.log(element);
+    });
+
+    /**
+     * 再来个例子
+     */
+    var cf = function (a, b) {
+        console.log(a);
+        console.log(b);
+    };
+
+    // 正常来说这个函数是这么调用的
+    cf('chen', 'fan');
+
+    /**
+     * 演示了如何用call的方式去调用，和上面的调用结果是一样的
+     * 1.以null为上下文，上下文怎么理解，后面会有例子
+     * 2.这次有了3个参数，因为cf有2个参数，所以call的第2和第3个参数将作为cf的第1和第2个参数
+     */
+    cf.call(null, 'chen', 'fan');
+
+    /**
+     * 参数比较多的情况下，call用起来比较蛋疼，因为需要写一堆参数，尤其对于参数数量不定的函数来说，call无力解决
+     * apply解决了这个问题，参数通过数组的方式传入，能够解决参数数量不定的问题
+     */
+    cf.apply(null, ['chen', 'fan']);
+
+    var uncountableFun = function () {
+        /**
+         * 1.arguments是个类数组(下标是数字的对象)，在一个函数作用域访问内一定能够访问到，成员是参数，
+         * 它常用来实现不定长参数函数
+         * 2.下面的代码的意思也就是打印出所有参数，
+         * 3.这种类数组，用Array的forEach去尝试遍历~
+         */
+        [].forEach.call(arguments, function (param) {
+            console.log(param);
+        });
+    };
+
+    /**
+     * 不定长参数函数想用call怎么调用?没法调用，所以apply排上用场了
+     */
+    var params = [1, 2, 3, 4, 5, 6, 7];
+    // 打印出1-7
+    uncountableFun.apply(null, params);
+
+    /**
+     * 理解下上下文的例子
+     */
+    var mxy = {
+        name: 'ma xin yu'
+    };
+
+    cf = function () {
+        // 由于没有实例化，所以这个this指向的是window对象
+        // 这个需要背一下,js的常识
+        console.log(this.name);
+    };
+
+    // 由于window对象没有定义name，所以输出是空的
+    cf();
+
+    /**
+     * 调整了上下文，以mxy这个对象为上下文，this指向了mxy这个对象，所以输出为'ma xin yu'
+     */
+    cf.call(mxy);
+</script>
+</body>
+</html>

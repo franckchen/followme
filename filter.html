@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>filter</title>
+</head>
+<body>
+<script>
+    var cf = [1, 2, 3, 4, 5];
+
+    /**
+     * 1.filter函数用于过滤出符合条件的数组成员，这些成员组成新数组返回
+     * 2.filter函数的参数是个函数，这个在java中是没有的，函数在javascript中是一等公民，可以赋值给变量或者当做参数传递
+     * 这一特性令js很灵活，java8的lamda表达式其实就是模拟js的可以将函数作为参数传递的特性(这段话最好背背，很装x...对面试有利)
+     * 3.匿名函数的参数element是数组的每个成员，函数返回真值则该成员通过审核，会出现在返回的数组里面，反之会被排除
+     * 4.匿名函数为每个成员执行一次匿名函数，这个要体会下
+     * 5.这个函数是ECMAScript 5的api(了解下它和js的关系)，简称ES5.ES5在IE8及更低版本中是不支持的。其他浏览器基本都支持
+     */
+    var mxy = cf.filter(function(element) {
+        // 会输出5个 mxy
+        console.log('mxy');
+
+        return element > 3;
+    });
+
+    // 学习和真正编码时，养成好习惯，调用api后要看一下调用对象有没有被污染，事实证明没有
+    console.log(cf);
+    // 返回的是大于3的成员组成的新数组，也就是[4, 5]
+    console.log(mxy);
+
+    // 不要迷信filter函数，因为完全可以不需要它，比如
+    var i;
+    var len;
+    mxy = [];
+
+    for (i = 0, len = cf.length; i < len; i++) {
+        if (cf[i] > 3) {
+            mxy.push(cf[i]);
+        }
+    }
+    // 实现了同样的效果，所以不要迷信这个函数，知道即可
+    console.log(mxy);
+
+    /**
+     * ES5提供的新api中，最应该学习的是这2个 -- forEach和map
+     */
+
+    /**
+     * forEach的作用含简单，就是遍历下数组
+     */
+    cf.forEach(function (element) {
+        console.log(element);
+    });
+
+    /**
+     * 但是这个api有个很大的问题，就是没法提前结束循环。。。
+     * 看下面这个需求 -- 写一个函数，判断一个数组，如果这个数组中，包含大于3的成员，那么返回true
+     * 否则，返回false
+     */
+    cf = [1, 2, 3, 4, 5, 6, 7];
+    function example1(arr) {
+        var i;
+        var len;
+
+        for (i = 0, len = cf.length; i < len; i++) {
+            if (arr[i] > 3) {
+                // 提前结束了example1这个函数
+                return true;
+            }
+        }
+
+        // 数组遍历完了，都没找到大于3的成员，那么就是没有，返回false
+        return false;
+    }
+    console.log(example1(cf));
+
+    /**
+     * 如果用forEach写。。。就蛋疼了
+     */
+    function example2(arr) {
+        var result = false;
+
+        arr.forEach(function (element) {
+            /**
+             * 下面这段代码，在js中等价于
+             * if (element > 3) {
+             *     result = true;
+             * }
+             * 这个要认真体会，很重要的知识
+             */
+            (element > 3) && (result = true);
+        });
+
+        return result;
+
+        /**
+         * 问题很明显了，我们即使提前找到了大于3的成员我们也无法结束掉循环函数，
+         * 因为在forEach的匿名函数中return，是结束了匿名函数，而不是example2这个函数
+         * 也就是说无法终止forEach...她一定要完成5次调用后才会结束。结果性能很差，es5为了解决
+         * 这个问题有个some方法，但是，既然for循环能搞定，为啥还要用它呢？实际开发中，可以考虑不
+         * 用这个api,但一定要会
+         */
+    }
+
+    console.log(example2(cf));
+
+    cf = [1, 2, 3, 4, 5, 6, 7];
+    mxy = cf.map(function (element) {
+        return element + 1;
+    });
+    // 看一下结果就能理解map函数的用途了，对一个数组的每个成员进行一定规则的修改，生成新数组
+    console.log(mxy);
+    // 原数组未被污染
+    console.log(cf);
+</script>
+</body>
+</html>
