@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * 以下是这个javascript的6个基本类型，一定要背熟
+         */
+        var a = 1;
+        console.log(typeof a);
+
+        a = 'cf';
+        console.log(typeof a);
+
+        a = true;
+        console.log(typeof a);
+
+        a = undefined;
+        console.log(typeof a);
+
+        a = {
+            cf: 'cf'
+        };
+        console.log(typeof a);
+
+        a = function () {};
+        console.log(typeof a);
+
+        /**
+         * 以下两个输出都很奇怪，都是object
+         */
+        a = null;
+        console.log(typeof a);
+        a = [1, 2, 3];
+        console.log(typeof a);
+
+        /**
+         * 针对这两个类型怎么判断呢？
+         */
+        // 判断null
+        console.log(null === null);
+
+        /**
+         * 1.Array.isArray 判断数组最长用的方法
+         * 2.这个方法ie8及以下浏览器不支持。。。其他浏览器没问题
+         */
+        a = [1, 2, 3];
+        console.log(Array.isArray(a));
+
+        /**
+         * 1.判断数组的第二种方法
+         * 2.这个方法有个坑。但是对于初学者来说基本上碰不到，可以忽略，但需要知道有坑
+         */
+        console.log(a instanceof Array);
+
+        /**
+         * 第三种方法，观察输出 -- [object Array] 可以判断出来了~
+         */
+        console.log(Object.prototype.toString.call(a));
+    </script>
+</body>
+</html>
