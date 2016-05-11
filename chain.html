@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>作用域链</title>
+</head>
+<body>
+<script>
+    // 一个命名空间
+    (function () {
+        var a = 1;
+        var cf = function () {
+            console.log(a);
+        };
+        cf();
+
+        /**
+         * 看到运行结果有点奇怪吧？在c和java中这是不可能的，这是js的特点
+         * 一层作用域找不到这个变量的定义就往上一层找，直到找到顶层
+         * 在这个例子中cf这个函数的作用域中找不到a的定义，解释器往上一层作用域找，找到了
+         * 所以a的值是1，逐级向上寻会有一定性能开销，故虽然有这个特性，但要合理运用
+         */
+        cf = function () {
+            console.log(a);
+            a = 2;
+        };
+
+        // 由于函数作用内的a实际就是全局的a,所以修改后，全局的a也发生了变化
+        cf();
+        console.log(a);
+    })();
+
+    // 另一个命名空间
+    (function () {
+        var a = 1;
+
+        var cf = function () {
+            var a = 2;
+            console.log(a);
+        };
+
+        // 输出是2，因为函数作用域内有a的定义，所以就优先用作用域内的a变量，故打印2
+        cf();
+        // 这个空间内的a不受影响，因为函数修改的只是函数作用域的局部变量a
+        console.log(a);
+    })();
+
+    // 另三个命名空间
+    (function () {
+        var a = 1;
+
+        var cf = function () {
+            console.log(a);
+            var a = 2;
+        };
+
+        // 打印的是undefined，未定义，因为解释器发现cf函数作用域内有a的定义，但是在打印之后，
+        // 所以打印时a还未定义
+        cf();
+    })();
+
+    // 另四个命名空间
+    (function () {
+        var a = 1;
+
+        var cf = function (a) {
+            console.log(a);
+            a++;
+        };
+
+        // 这个不难理解，输出的一定是实参，实参是拷贝过来的，所以修改不影响外层
+        cf(a);
+        // 修改的是局部的a,这层作用域的没有影响
+        console.log(a);
+    })();
+
+    // 另五个命名空间
+    (function () {
+        var a = {
+            count: 1
+        };
+
+        var cf = function (a) {
+            console.log(a);
+            a.count++
+        };
+
+        // 输出是2,为什么会变化呢？因为js中对象的传递和参数赋值都是引用，不是拷贝，
+        // 修改的是引用，自然会污染源对象，注意和上一例子做好区分
+        cf(a);
+        console.log(a.count);
+
+        // 看这个例子
+        var cf1 = 1;
+        var mxy1 = cf1;
+
+        // 非数组，非对象，所以mxy1 = cf1实际是拷贝，修改了mxy1,cf1不受影响，输出还是1
+        mxy1 = 2;
+        console.log(cf1);
+
+        var cf2 = {
+            age: 1
+        };
+        var mxy2 = cf2;
+        mxy2.age = 23;
+
+        // 输出的是23，mxy2 = cf2，因为cf2是个对象，所以这一行为是引用，也就是mxy2引用了cf2
+        // 所以之后对mxy2的修改，直接影响到了cf2,js中数组和对象会有这种问题，用的时候要小心注意了
+        console.log(cf2.age);
+    })();
+</script>
+</body>
+</html>
