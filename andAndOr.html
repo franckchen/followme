@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>||和&&在js中的用途</title>
+</head>
+<body>
+<script>
+    /**
+     * 先看下面的几个例子，对于学java的人来说，很难想象这些场景吧
+     * 首先要记住js的这些假值
+     */
+    if (!0) {
+        console.log('reach');
+    }
+    if (!undefined) {
+        console.log('reach');
+    }
+    if (!null) {
+        console.log('reach');
+    }
+    if (!'') {
+        console.log('reach');
+    }
+
+    var cf = '';
+    if (!'') {
+        console.log('reach！');
+    }
+
+    // 这句和上面的代码效果相同,如果js在做&&的判断的时候，认定第一个值是假的
+    // 则&&后面的都不需要运行判断便自动认为是假的了，后面的语句不会运行，只有&&前是真值
+    // 后面的语句才会运行
+    // 这是js一个很好用的特性
+    !cf && console.log('reach！');
+
+    var mxy = {};
+
+    cf = mxy.name || 'chenfan';
+    // 观察先输出
+    console.log(cf);
+
+    // 下面两句等价
+    mxy.name || console.log('reach!');
+    if (!mxy.name) {
+        console.log('reach!');
+    }
+
+    // ||在做判断时，如果第一个值是假，则立刻结束判断，因为结果必定为假，||后的语句不会运行
+    // 如果||前是真值，解析器需要判断后面的语句的结果，才能得出最终结果，正好模拟了if语句
+    mxy.name = 'mxy';
+    mxy.name || console.log('unreachable');
+</script>
+</body>
+</html>
