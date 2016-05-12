@@ -45,8 +45,13 @@
      * 以下是推荐的继承方式。。。重点理解
      */
     Female = function (name, age, gender) {
+        /**
+         * 以this为上下文，运行Human函数，
+         * Female自身也添加了this.name,this.age...
+         */
         Human.apply(this, arguments);
 
+        // 扩充了gender
         this.gender = gender;
     };
 
