@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>类型转换</title>
+</head>
+<body>
+<script>
+    // 定义了一个字符串型的数字
+    var a = '1';
+
+    /**
+     * 以下是常用的字符串 -> 数字的转换方法
+     */
+
+    /**
+     * 方法1： parseInt
+     */
+    var cf = parseInt(a);
+    console.log(a);
+    console.log(typeof cf);
+
+    /**
+     * 方法2： 神奇的加号
+     * 这个方法性能最好，是最推荐的，面试了实习生，能说上这种方法的人数为0，
+     * 但是对于实际开发来说，这种方法是最推荐的
+     */
+    cf = +a;
+    console.log(cf);
+    console.log(typeof cf);
+
+    /**
+     * 方法3：Number
+     * 这种方法不推荐，记住即可，避免使用
+     */
+    cf = Number(a);
+    console.log(cf);
+    console.log(typeof cf);
+
+    /**
+     * parseInt和+两个都是非常常用的字符串->数字的转换
+     * 到底应该用哪个呢？需要灵活掌握，看下面的例子
+     */
+
+    /**
+     * parseInt可以用于提取数字，看下面的例子
+     * css有个高度是11px,用parseInt能够快速提取出我想要的值，而+则不可
+     */
+    var mxy = '11px';
+    console.log(+mxy);
+    console.log(parseInt(mxy));
+
+    // 注意NaN这个东西，它的含义是not a number,但它的类型是number
+    console.log(typeof NaN);
+    // 该如何判断NaN呢？不同于Array.isArray(), isNaN没有兼容性问题，放心使用
+    cf = NaN;
+    console.log(isNaN(cf));
+
+    /**
+     * parseInt还能够按进制进行转换
+     */
+    cf = '0F';
+    console.log(parseInt(cf, 10)); // 按10进制解析时，忽略掉了结尾字母
+    console.log(parseInt(cf, 16));
+
+    // 数字型的数字
+    var b = 1;
+
+    /**
+     * 数字转字符串的第一种方法
+     * js中一切类型的元素都有toString()这个方法，但是用途各不相同，这是一个重要知识点
+     */
+    console.log(b.toString());
+
+    /**
+     * 数字转字符串的第二种方法，也是最推荐的方法
+     * 会这个方法能加分，目前实习中很少有人能答出
+     */
+    console.log(b + '');
+
+    /**
+     * 第三种方法，不推荐
+     */
+    console.log(Number(b));
+
+    /**
+     * 转换为boolean
+     * js中0,NaN,undefined,''等等都被认定为假值，对于初学js的人来说很奇怪，有些人对代码有洁癖
+     * 邀请这些值一定转化为boolean型，来规范代码，增强可读性，所以就有了转boolean的需求
+     */
+    console.log(!!undefined);
+    console.log(!!NaN);
+    console.log(!!'');
+    console.log(!!0);
+    console.log(!!null);
+
+    // 还有一种不推荐的方法
+    console.log(Boolean(undefined));
+</script>
+</body>
+</html>
