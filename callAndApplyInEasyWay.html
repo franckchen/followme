@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>call和apply简单例子</title>
+</head>
+<body>
+<script>
+    var cf = {
+        name: 'chenfan',
+        getName: function () {
+            console.log(this.name);
+        }
+    };
+
+    var mxy = {
+        name: 'maxinyu'
+    };
+
+    /**
+     * mxy这个对象里没有getName这个方法，但是我又想用它，来输出name的值。。。
+     * 恰巧cf这个对象里有，call和apply排上用场了。
+     * js每个函数都有call和apply这个成员来充实函数，使函数强制切换上下文来运行
+     */
+    cf.getName.call(mxy);
+
+    var myFunc = function () {
+        console.log('Hello World');
+    };
+
+    // 二者效果相同，只是上下文不同
+    myFunc();
+    myFunc.call(null);
+</script>
+</body>
+</html>
