@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>oo基础</title>
+</head>
+<body>
+<script>
+    // 定义构造函数，玄机在函数里的this
+    var Human = function (name, age) {
+        this.name = name;
+        this.age = age;
+    };
+
+    var mxy = new Human('ma xin yu', 23);
+
+    console.log(mxy.name);
+</script>
+</body>
+</html>
