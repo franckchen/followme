@@ -40,6 +40,18 @@
 
     mxy = new Female('maxinyu', 23);
     console.log(mxy.gender);
+
+    /**
+     * 以下是推荐的继承方式。。。重点理解
+     */
+    Female = function (name, age, gender) {
+        Human.apply(this, arguments);
+
+        this.gender = gender;
+    };
+
+    mxy = new Female('ma xin yu', 23, 'female');
+    console.log(mxy.name);
 </script>
 </body>
 </html>
