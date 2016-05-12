@@ -15,6 +15,31 @@
     var mxy = new Human('ma xin yu', 23);
 
     console.log(mxy.name);
+
+    // 这种实现学名叫对象直接量，就是通过简写直接实现一个对象
+    // 没有构造函数，所以没法批量创建，上面的例子是js中标准的对象
+    // 实现方法
+    var cf = {
+        name: 'chenfan'
+    };
+
+    /**
+     * 以下是js的继承
+     */
+    var Female = function (name, age) {};
+
+    /**
+     * 1.js的继承不同于其他语言，他是通过原型链的方式实现的，玄机就是prototype
+     * 2.从字面理解，prototype就是原型，它一定是个对象，一个新类的如果有原型，那么他将继承
+     * 原型的所有方法和成员，本利中也就继承了name和age.
+     * 3.在原型链上扩展了成员实现了继承
+     * 4.和作用域链类似，访问对象成员时，优先在自己身上找，找不到就找原型链上的，如果都没有就是undefined
+     */
+    Female.prototype = new Human();
+    Female.prototype.gender = 'female';
+
+    mxy = new Female('maxinyu', 23);
+    console.log(mxy.gender);
 </script>
 </body>
 </html>
