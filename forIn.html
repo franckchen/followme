@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>for...in与对象遍历</title>
+</head>
+<body>
+<script>
+    var cf = {
+        name: 'chenfan',
+        age: 28,
+        gender: 'male'
+    };
+
+    /**
+     * in的作用是判断对象中是否有该属性
+     */
+    console.log('name' in cf);
+
+    // for...in...的作用遍历对象的属性名，运行过程中i被不断赋值
+    var i;
+    for (i in cf) {
+        console.log(i);
+    }
+
+    /**
+     * for...in...会有这样一个问题，看下面的例子
+     */
+
+    // 创建一个Mxy类，继承自cf对象
+    var Mxy = function () {};
+    Mxy.prototype = cf;
+
+    // 实例化了mxy,注意代码规范细节，构造函数首字母大写
+    var mxy = new Mxy();
+
+    // mxy扩展了一个兴趣爱好，台球..
+    mxy.hobby = 'billiards';
+
+    /**
+     * 观察下遍历结果，连cf对象的属性都打印出来了。。。。
+     * 可我想要的只是mxy这个对象有的属性(爱好)，不想看继承过来的啊
+     */
+    for (i in mxy) {
+        console.log(i);
+    }
+
+    /**
+     * 下面的代码能够达到我们的预期
+     */
+    for (i in mxy) {
+        if (mxy.hasOwnProperty(i)) {
+            console.log(i);
+        }
+    }
+
+    // hasOwnProperty用于判断对象是否具有某一属性，注意只在自己身上找，
+    // 不会在原型链上找
+    console.log(mxy.hasOwnProperty('hobby'));
+
+    /**
+     * bonus 关于变量没有var
+     */
+
+    // 突然将一个没有定义过的变量给改了
+    baidu = 'baidu';
+
+    // 有输出，且符合预期
+    console.log(baidu);
+
+    /**
+     * 也能够输出，且符合预期，因为作用域链原因，
+     * 代码找到了浏览器顶层作用域window,并在window对象上定义了一个baidu成员，
+     * 实际开发中这样的行为是一定要避免的，因为可能会冲突或者破坏浏览器的原生api
+     * 在node.js中影响的是global对象
+     */
+    console.log(window.baidu);
+
+    // windows上没有这些变量
+    console.log(window.alibaba);
+    console.log(window.tencent);
+
+    /**
+     * 看下面的例子，做法很危险，每次遍历时j被赋予了cf对象的一个属性名
+     * window对象被挂上了一个名为j的成员，好在window上没有这个
+     * 方法，如果和原生api有了冲突，会引起严重bug
+     */
+    for (j in cf) {
+        console.log(j);
+    }
+    console.log(j);
+</script>
+</body>
+</html>
