@@ -57,6 +57,82 @@
 
     mxy = new Female('ma xin yu', 23, 'female');
     console.log(mxy.name);
+
+    /**
+     * 来个多重继承的例子
+     */
+    var Animal = function () {
+        // 动物有四只脚
+        this.feetCount = 4;
+    };
+
+    /**
+     * 创建怪兽类，继承自人和动物
+     */
+    var Monster = function (name, age) {
+        // 继承自Human和Animal
+        Human.apply(this, arguments);
+        Animal.call(this);
+    };
+
+    /**
+     * cf完成了继承。。。是个怪兽，来自人和动物的合体
+     */
+    cf = new Monster('chen fan', 28);
+    console.log(cf.feetCount);
+
+    var Cf = function () {
+        // 注意，实例化的时候，这些代码都会运行的~
+        console.log('cf');
+        console.log('mxy');
+        this.name = 'chen fan';
+
+        // 定义了一个方法，未来会被覆盖
+        this.getName = function () {
+            console.log(this.name);
+        };
+    };
+
+    /**
+     * 注意看下面的代码，getName方法被覆盖了，代码被解析的时候，首先找mxy实例有没有getName这个方法
+     * 找到了，就用它，没有就查原形(prototype),还没查到就找原形的原形，直到查到底层，这就是js给基于原型链
+     * 实现继承的真谛
+     */
+    mxy = new Cf();
+    // 在mxy实例上找到了，覆盖了
+    mxy.getName = function () {
+        console.log('ma xin yu');
+    };
+
+    // 定义个动物类
+    Animal = function () {
+        // 动物可以繁殖
+        this.canBreed = true;
+    };
+
+    // 高级动物继承自普通动物
+    var SeniorAnimal = function () {
+        Animal.call(this);
+
+        // 高级动物能行走了
+        this.canWalk = true;
+    };
+
+    // 狗继承自高级动物
+    var Dog = function () {
+        SeniorAnimal.call(this);
+
+        // 狗能旺旺了
+        this.canBark = true;
+    };
+
+    // 实例化一只狗
+    var myPet = new Dog();
+
+    // 理解下链。。。逐级上溯查找
+    console.log(myPet.canBark);
+    console.log(myPet.canBreed);
+    console.log(myPet.canWalk);
 </script>
 </body>
 </html>

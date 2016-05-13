@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>关于JS数组</title>
+</head>
+<body>
+<script>
+    // 第一种定义数组的方式，不推荐。。。
+    var cf = new Array(1, 2, 3);
+    console.log(cf);
+
+    // 第二种,同样不推荐
+    cf = Array(1, 2, 3);
+    console.log(cf);
+
+    // 推荐这么定义数组
+    cf = [1, 2, 3];
+
+    // js的数组一定有一个length属性，标示数组的长度
+    console.log(cf.length);
+
+    // 判断数组的方法
+    console.log(Array.isArray(cf));
+    console.log(cf instanceof Array);
+
+    // 一定要背下来下面的输出结果
+    console.log(typeof cf);
+
+    // js中数组和对象传递的是引用，要特别注意
+    var mxy = cf;
+    mxy[0] = 4;
+    console.log(cf);
+
+    // 拷贝数组的两个trick
+    cf = [1, 2, 3];
+    mxy = cf.slice(0);
+    mxy = cf.concat();
+
+    // js中数组越界访问是无害的,不会出错或抛出异常
+    console.log(cf[100]);
+
+    // 什么东西都能是数组成员, 而且类型不要求一致
+    cf = [null, {cf: 'chenfan'}, [], function () {}, 'cf'];
+    console.log(cf);
+
+    /**
+     * 以下是必会的api
+     */
+    cf = [1, 2, 3];
+    // 数组拼接
+    console.log(cf.concat([4, 5]));
+    // 元素从尾部入数组
+    cf.push(6);
+    console.log(cf);
+    // 元素从尾部出队列
+    cf.pop();
+    console.log(cf);
+    // 从头入
+    cf.unshift(0);
+    console.log(cf);
+    // 从头出
+    cf.shift();
+    console.log(cf);
+    // 数组->字符串，各个成员间用_分割
+    console.log(cf.join('_'));
+</script>
+</body>
+</html>
