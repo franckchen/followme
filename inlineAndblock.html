@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>inline</title>
+    <style>
+        #cf,
+        #wz,
+        #mxy {
+            width: 100px;
+            height: 100px;
+            padding: 10px;
+            background-color: #008000;
+            margin: 20px;
+        }
+
+        #baidu {
+            /* 学习的时候调整下这个属性，看一下效果，看看颜色，理解下为什么 */
+            line-height: 400px;
+            background-color: #ff0000;
+            padding: 1px;
+        }
+    </style>
+</head>
+<body>
+<script>
+    // 这个Js文件纯粹是为了写注释用的
+    /**
+     * 1.html元素分为内联元素(行内元素)、块级元素
+     * 2.行内元素特点：1.不换行 2.无法设置宽高(但会自适应，被撑开) 3.无法设置上下margin,对应的css display属性是inline
+     * 通过设置display: block可以转换问块级元素，常见的块级元素: <a>,<span>....
+     * 3.块级元素特点: 1.换行 2.宽高，padding,margin均可设置 3.默认情况下宽度撑满父级元素 4.对应的css display属性是block
+     */
+
+    /**
+     * 看下面的例子:
+     * 1.行内元素设置padding是有效的
+     * 2.行内元素 上下margin无效
+     * 3.注意观察，虽然内联元素设置了上下padding,但是没效果，不是说不出现留白，而是这个留白没有占用空间，id为mxy的这个块级元素
+     * 会占用内联元素的上下padding
+     * 4.实际开发中，避在内联元素内放置块级元素，比如下面的例子
+     * <span><div></div><span>
+     * 5.行内元素可以设置line-height，动手理解下
+     */
+</script>
+<a href="" id="cf">123</a>
+<span id="wz"></span>
+<div id="mxy"></div>
+<span id="baidu">233</span>
+</body>
+</html>
