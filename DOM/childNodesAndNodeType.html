@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>childNodes和nodeType</title>
+</head>
+<body>
+<div id="cf">
+    有段文字
+    <!--有段注释-->
+    <div class="cf"></div>
+    <div class="mxy"></div>
+    <div class="mxy"></div>
+    <div class="cf"></div>
+</div>
+<div id="mxy"></div>
+<script>
+    /**
+     * 本段代码的主要目的是找到id为cf的div元素的全部孩子
+     * 及孩子中class为cf的元素
+     */
+
+    // 找到id为cf的节点
+    var cf = document.getElementById('cf');
+
+    /**
+     * HTML节点都childNodes这个属性，里面记录了它的全部孩子
+     */
+    var childNodes = cf.childNodes;
+    /**
+     * 注意这里的输出，结合上面的HTML观察，输出的不光是HTML节点，还有
+     * 文字和注释，因为这些都是节点，不过他们不是HTML节点，如何进行区分呢？
+     * 节点的nodeType属性很重要用于标示节点的类型
+     * 可以参考http://www.w3school.com.cn/jsref/prop_node_nodetype.asp
+     * 一定要记住nodeType为1的，一定是HTML元素节点
+     */
+    console.log(childNodes);
+
+    // 记录class为cf的元素的数组
+    var cfs = [];
+    // 记录id为cf的元素的全部HTML孩子节点
+    var htmlElements = [];
+
+    var i;
+    var len;
+    for (i = 0, len = childNodes.length; i < len; i++) {
+        var currentNode = childNodes[i];
+
+        /**
+         * nodeType为1的元素是HTML节点
+         */
+        if (currentNode.nodeType === 1) {
+            // push(),将一个元素入数组
+            htmlElements.push(currentNode);
+
+            // className属性记录元素的class属性的值
+            if (currentNode.className === 'cf') {
+                htmlElements.push(currentNode);
+            }
+        }
+    }
+
+    console.log(htmlElements);
+    console.log(cfs);
+</script>
+</body>
+</html>

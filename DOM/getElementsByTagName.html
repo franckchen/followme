@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>getElementsByTagName</title>
+</head>
+<body>
+<div id="cf">
+    有段文字
+    <!--有段注释-->
+    <div class="mxy"></div>
+    <div class="mxy"></div>
+</div>
+<div></div>
+<div></div>
+<span></span>
+<ul>
+    <li>a</li>
+    <li>b</li>
+    <li>c</li>
+</ul>
+<script>
+    /**
+     * 1.getElementByTagName被所有浏览器支持，这点不同于getElementsByClassName
+     * 2.注意s Elements!
+     */
+
+    // 获取素有节点，这个背一下, *代表所有
+    var allNodes = document.getElementsByTagName('*');
+    console.log(allNodes);
+
+    // 获取页面上的所有div
+    var divCollections = document.getElementsByTagName('div');
+
+    // 所有div都包含在里面了，包括孩子级的
+    console.log(divCollections);
+</script>
+</body>
+</html>
