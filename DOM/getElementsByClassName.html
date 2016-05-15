@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>getElementsByClassName函数</title>
+</head>
+<body>
+<div class="cf">11</div>
+<div class="cf"></div>
+<div class="cf"></div>
+<div class="cf" id="mxy"></div>
+<div class="cf"></div>
+<div class="cf"></div>
+<script>
+    /**
+     * getElementsByClassName根据class名获取DOM节点
+     *
+     * 1.getElementsByClassName(),返回的是HTMLCollection类型对象
+     * 2.getElementsByClassName, getElementById,注意区别--复数s
+     * 3.很重要的一个知识点ie8及更低版本的ie浏览器不支持这个方法
+     */
+    var nodes = document.getElementsByClassName('cf');
+    console.log(nodes);
+
+    if (nodes.length > 0) {
+        var i;
+        var len;
+
+        // 复习一下怎么通过forEach去循环遍历数组
+        for (i = 0, len = nodes.length; i < len; i++) {
+            var currentNode = nodes[i];
+
+            /**
+             * 1.nodeType很重要的一个属性，一定要背下来,它标示节点类型
+             * 2.nodeType为1，表示节点是dom节点，说俗点就是html标签，此外还有可能是注释啥的，这个后面再讲
+             */
+            console.log(currentNode);
+            if (currentNode.nodeType !== 1) {
+                continue;
+            }
+
+            // 找到id为mxy的节点，打印出来
+            if (currentNode.id === 'mxy') {
+                console.log(currentNode);
+
+                // 养成好习惯，找到节点了，循环不需要继续了，结束掉
+                break;
+            }
+        }
+    }
+
+    // 在ie8及更早版本中，没有getElementsByClassName怎么办？
+    // 自己实现一个也不麻烦，但是性能会比较差，这个自己看看就好了，不要扣
+    document.getElementsByClassName = function (match) {
+        var result = [];
+        var elements = document.getElementsByTagName('*');
+        var i;
+        var elem;
+
+        match = ' ' + match + ' ';
+        for (i = 0; i < elements.length; i++) {
+            elem = elements[i];
+
+            if ((' ' + (elem.className || elem.getAttribute('class')) + ' ').indexOf(match) > -1) {
+                result.push(elem);
+            }
+        }
+
+        return result;
+    };
+
+    /**
+     * 最主要的知识点：
+     * 1.通过类名查找元素的api -- getElementsByClassName
+     * 2.IE8和更早版本不支持这个api,但是我们可以自己实现，这叫polyfill，记住这个英文词，"没有这个函数我就写个Polyfill去适配"，
+     * 面试很加分
+     * 3.了解一下nodeType http://www.w3school.com.cn/jsref/prop_node_nodetype.asp
+     */
+</script>
+</body>
+</html>
