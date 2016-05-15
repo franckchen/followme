@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /**
+     * 这是一个普通的函数，特点就是函数内没有this
+     */
+    var cf = function () {
+        var a = 1;
+        console.log(a);
+    };
+
+    cf();
+
+    /**
+     * 1.这是一个可以用作类的函数，特点是函数内包含this
+     * 2.Mxy既可以理解为定义class,也可以认为Mxy就是一个构造函数
+     */
+    var Mxy = function () {
+        this.a = 1;
+        console.log(this.a);
+        console.log(window.a);
+        console.log(a);
+    };
+
+    Mxy();
+    // 重点理解this的指向
+    console.log(window.a);
+
+    // 通俗点，对一个函数new后，函数有了自己的实例化空间
+    // this就指向了自身，而不是外一层实例
+    var mxy = new Mxy();
+    console.log(mxy.a);
+
+    // 来看一下访问对象成员的两种方式
+    console.log(mxy.a);
+    console.log(mxy['a']);
+
+    // 为什么有了第一种访问方式，还要有第二种呢，看例子
+    var aa = 'a';
+    console.log(mxy[aa]); // 通过变量去访问对象的一个成员，很常用，第一种方式显然不具备这个能力
+
+    // 打开js的严格模式，什么是严格模式，这里先不多赘述了，可以理解为打开了以后在这之后的代码就全部支持
+    // ES6(简单理解为javascript的2016最新版)了，注意不是所有浏览器都支持es6，一定是最新的才可以
+    'use strict';
+
+    /**
+     * 以下是ES6的类定义，老的方式依旧可以用，新方法只是让更多的学习过java,c++
+     * 的人用起来更舒服些，以下的代码是加分项，不会面试的时候问，看看即可
+     */
+    class Pet {
+        // 构造函数
+        constructor(name) {
+            this._name = name;
+        };
+        // 定义一个函数
+        sayHello() {
+            console.log('*scratch*');
+        };
+        /**
+         * 1.get,set是关键字
+         * 2.getter,setter对某个属性设置存值函数和取值函数，拦截该属性的存取行为
+         */
+        get name() {
+            return this._name;
+        };
+    }
+
+    class Cat extends Pet {
+        constructor(name) {
+            // 调用基类的构造函数
+            super(name);
+        };
+
+        sayHello() {
+            // 调用父类的构造函数
+            super.sayHello();
+            console.log('miaaaauw');
+        };
+    }
+
+    cf = new Cat('chen fan');
+    cf.sayHello();
+</script>
+</body>
+</html>
