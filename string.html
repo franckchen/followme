@@ -45,6 +45,27 @@
     // 我们变一下数据，下面的数据貌似更符合程序员的视角
     mxy = 'apple, orange, banana, cherry';
     cf = mxy.split(',');
+
+    // 输出的东西都带了个空格，很恶心
+    console.log(cf);
+
+    // 回忆一下map函数，知识点1,ie8浏览器不支持 2,返回新数组，数组成员被修改过
+    cf = cf.map(function (element) {
+        /**
+         * 1.trim方法去除收尾的空格，必须背下来
+         * 2.ie8及更老版本的ie浏览器不支持trim函数
+         */
+        return element.trim();
+    });
+    console.log(cf);
+
+    // 像ie8这种老浏览器不支持trim怎么办呢？自己实现一个呗，记住
+    // 这叫polyfill
+    if (!String.prototype.trim) {
+        String.prototype.trim = function () {
+            return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
+        };
+    }
 </script>
 </body>
 </html>
