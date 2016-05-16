@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>字符串</title>
+</head>
+<body>
+<script>
+    // 定义字符串最常用的方法
+    var cf = '123';
+    // 一个不推荐使用的方法
+    cf = String('123');
+
+    /**
+     * 学习下字符串常用的api
+     */
+
+    /**
+     * 检查字符串中是否有23
+     *
+     * 1.输出值是1 ，表示23这个字符串在cf字符串中的位置(从0开始)
+     * 2.也就是说>=0的时候，表示能够找到需要查询的字符串
+     */
+    console.log(cf.indexOf('23'));
+    // 查不到返回-1
+    console.log(cf.indexOf('chen fan'));
+
+    // 为什么说这个api常用，看下面的例子,必须要背下来
+    var mxy = 'apple,orange,banana,cherry';
+    mxy.indexOf('orange');
+
+    /**
+     * 第二个常用的api,以,分割字符串，组成数组
+     */
+    cf = mxy.split(',');
+    console.log(cf);
+    // 逆过来是这样的, 拿回了原字符串
+    console.log(cf.join(','));
+
+    // 字符串拼接
+    cf = 'chenfan';
+    mxy = 'maxinyu';
+    console.log(cf + mxy);
+
+    // 我们变一下数据，下面的数据貌似更符合程序员的视角
+    mxy = 'apple, orange, banana, cherry';
+    cf = mxy.split(',');
+</script>
+</body>
+</html>
