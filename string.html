@@ -66,6 +66,18 @@
             return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
         };
     }
+
+    // 判断两个字符串是否相同，=== 就好了
+    console.log('cf' === 'cf');
+    console.log('cf' === 'mxy');
+
+    /**
+     * 额外知识点 == 和 ===
+     * == 只要看上去相等即可，===还要求类型相等
+     * 实际开发中，一定要用===，避免==
+     */
+    console.log(1 == '1');
+    console.log(1 === '1');
 </script>
 </body>
 </html>
