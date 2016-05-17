@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>初窥jQuery</title>
+    <!-- 引入jQuery -->
+    <!-- 这种东西叫做cdn，需要面授 -->
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="cf">
+    111
+    <div class="target"></div>
+    <div class="target"></div>
+</div>
+<span></span>
+<span class="mxy cf"></span>
+<div class="cf"></div>
+<div class="cf">
+    <div class="target">
+        <div class="no"></div>
+    </div>
+</div>
+</body>
+<script>
+    // 引入jQuery后，会增加一个神奇的全局变量$,它能完成很多事情
+    // jQuery目前是js最常用的库，他很好的抹平的浏览器兼容性问题，同时还大大简化了开发
+    // jQuery支持到ie6,非常符合国情,jQuery是前端的必修课，很重要
+    // 目前百度已经全面使用jQuery
+
+    /**
+     * 1.下面的代码是选择全部class名为cf的DOM元素，选择器非常类似于css
+     * jQuery的选择器十分强大，他的名字也透露出了它的强项 -- query
+     * 2.注意观察查找结果的每个成员，不是原生的htmlElement(与document.getElementById返回)，而是经过包装过的
+     */
+    var cf = $('.cf');
+    console.log(cf);
+    // 观察下cf是object,也是类数组
+    console.log(typeof cf);
+
+    /**
+     * 虽然这样能够遍历，但是不推荐
+     */
+    var i;
+    var len;
+    for (i = 0, len = cf.length; i < len; i++) {
+        console.log(cf[i].className);
+    }
+
+    /**
+     * 以下是比较常用的方法
+     */
+    cf.each(function (index, element) {
+        // 序号，注意名字可以随便取，寓意明确些好
+        console.log(index);
+        // 拿到了HTMLElement
+        console.log(element);
+
+        // 下面的方法是将HTMLElement转换为jQuery对象
+        // 注意变量名前加了个$，标示这个变量是jQuery对象，养成这个好习惯
+        var $element = $(element);
+        console.log($element);
+
+        // 下面是将jQuery对象转换为HTMLElement对象的方法，一定要背
+        var cf = $element[0];
+        console.log(cf);
+        // 第二种方法
+        cf = $element.get(0);
+        console.log(cf);
+
+        /**
+         * jQuery对象和HTMLElement对象比起来好在哪呢？他提供了很多实用的DOM操作api,看下面的例子
+         */
+
+        // 为元素添加一个名为cf的class
+        // api即优雅又好用，抹平了兼容性问题，同时还很容易记忆，这就是jQuery的魅力
+        $element.addClass('cf');
+
+        // 判断下元素是否有名为cf的class，比indexOf()好多了吧？
+        console.log($element.hasClass('cf'));
+    });
+</script>
+</html>

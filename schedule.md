@@ -4,3 +4,6 @@ getElementsByClassName -> getElementsByTagName -> childNodesAndNodeType
 
 applyAndCall新代码例子  
 string  
+
+面授内容
+cdn与script跨域
