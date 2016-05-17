@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <title>css权重</title>
     <style>
+        div {
+            background-color: #000;
+        }
+
         .block {
             width: 100px;
             height: 100px;
@@ -31,8 +35,9 @@
     </style>
 </head>
 <body>
-<div id="cf" class="block mxy"></div>
-<div class="block mxy cf"></div>
-<div class="block cf nb"></div>
+<!-- 注意div已经被设置了颜色 -->
+<div class="block"></div>
+<!-- class选择器权重大于标签选择器 -->
+<div class="cf"></div>
 </body>
 </html>
