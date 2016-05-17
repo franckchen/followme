@@ -96,6 +96,50 @@
      * 调整了上下文，以mxy这个对象为上下文，this指向了mxy这个对象，所以输出为'ma xin yu'
      */
     cf.call(mxy);
+
+    /**
+     * 实际开发中apply还有什么用途呢？看下面的例子
+     */
+
+    /**
+     * 程序员小A写了个扯淡的函数，计算参数的和
+     */
+    var aFunc = function () {
+        var i;
+        var len;
+        var count = 0;
+
+        // 注意好好学习一下在js中如何实现参数长度不定的函数
+        for (i = 0, len = arguments.length; i < len; i++) {
+            // 注意arguments前的加号，转换为数字
+            count += +arguments[i];
+        }
+
+        return count;
+    };
+
+    // 常规场景下这个函数还好用
+    console.log(aFunc(1, 2, 3));
+
+    // 但是可能我需要求和的数字来自于后端，有多少个我不确定。。。
+    // 突然感觉到小A的这个函数没法用了有木有？可是小A的这个函数已经上线了。。。我还没法改
+    // 必须要用，怎么办？
+
+    // 假设一个需要求和数据，用原来的调用方式，没法搞定吧？
+    var i;
+    var len;
+    var numCollection = [];
+    for (i = 0, len = 100; i < len; i++) {
+        numCollection.push(i);
+    }
+
+    /**
+     * 一下子就搞定了，是不是？
+     * 现实中这种事情是真实存在的,jQuery的when()方法就是一个现实存在的
+     * 类似于上面例子的扯淡方法，apply来化解，未来学jQuery用到这个方法的时候
+     * 你会有体会的
+     */
+    console.log(aFunc.apply(null, numCollection));
 </script>
 </body>
 </html>
