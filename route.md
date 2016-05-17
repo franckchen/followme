@@ -15,6 +15,8 @@
 *前处理器(LESS, stylus)  
 *后处理器(postcss)  
 *常考知识点(换行，省略...)  
+*flex布局  
+*table布局  
 
 **前端**  
 *ajax  
@@ -45,6 +47,7 @@
 **技巧**  
 *异步问题化解(promise,回调,emitter)  
 *柯里化  
+*常用基础代码  
 
 **node.js**  
 
@@ -56,7 +59,7 @@
 **框架**  
 *mvc - backbone  
 *mvvm - angular, angular2, vue  
-*组件化 - react + redux, polymer  
+*web component - react + redux, polymer  
 
 **前端样式库**  
 *bootstrap  
@@ -66,7 +69,7 @@
 *手势操作与Hammer.js  
 *移动端常见问题及化解(点击击穿，fixed定位，回退刷新等)  
 
-**单测**  
+**测试**  
 *jasmine, mocha  
 *断言库(chai)  
 *自动化测试(karma, selenium)  
@@ -102,7 +105,6 @@
 *react-native  
 *nw.js, electron  
 
-
 **姿势**  
 *名人博客  
 *知名团队  
@@ -112,6 +114,10 @@
 *书籍  
 *官方资料文档  
 
+**新技术**  
+*fetch API  
+
 **程序员技能**  
 *markdown  
 *chrome工具  
+*git  
