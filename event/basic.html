@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>基础</title>
+    <style>
+        #cf {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            background-color: #008000;
+        }
+    </style>
+</head>
+<body>
+    <div id="cf"></div>
+    <script>
+        var cf = document.getElementById('cf');
+
+        /**
+         * 1.这种通过onxxx绑定的叫做DOM0级 事件操作，这是非常远古的一种事件监听、绑定
+         * 方式，在非常老的浏览器里是这样做的
+         * 2.注意观察，只有click2会被触发
+         */
+        cf.onclick = function () {
+            console.log('click');
+        };
+
+        // DOM0级的事件绑定，只能绑一个
+        cf.onclick = function () {
+            console.log('click2');
+        };
+
+        // 解绑DOM 0级事件
+        // cf.onclick = null;
+
+        /**
+         * DOM2级 扩成了事件的api操作，标准中，指定了addEventListener和removeEventListener
+         */
+        cf.addEventListener('click', function () {
+            // 注意观察，这里的事件绑定和DOM0级的事件绑定不冲突
+            console.log('click3');
+        });
+
+        /**
+         * 上面这种通过匿名函数完成事件绑定的方式有很扯淡的一个弱点就是没法解绑，
+         * 怎样解绑呢，看下面的例子
+         */
+        var mxy = function () {
+            // 注意addEventListener可以为事件绑定多个处理函数
+            console.log('click4');
+        };
+        cf.addEventListener('click', mxy);
+        cf.removeEventListener('click', mxy);
+    </script>
+</body>
+</html>
