@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>对比</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="cf"></div>
+<div class="cf"></div>
+<div class="mxy"></div>
+<div class="mxy"></div>
+<div class="mxy"></div>
+</body>
+<script>
+    /**
+     * 自信体会下jQuery到底强大在哪
+     * 查找全部class为cf的DOM节点，注意ie8及更早的浏览器不支持getElementsByClassName
+     * 而jQuery实现的api，兼容到ie6,很好的解决了兼容性问题
+     */
+    console.log($('.cf'));
+
+    // 下面的代码报错了，为什么，找不到id为abc的元素，返回了个null
+    // null没有getAttribute这个方法，代码报错,程序没法运行了
+    // var abc = document.getElementById('abc');
+    // abc.getAttribute('class');
+
+    // 再看jQuery,用类似于css的选择器查找元素,同时还不报错
+    console.log($('#cf').attr('cf'));
+
+    // 回一下用原生api怎么实现这个操作，很麻烦吧，还需要循环，遍历...
+    // jQuery大大简化了操作
+    var $mxyCollection = $('.mxy');
+    $mxyCollection.addClass('jquery');
+
+    // addClass可能还显示不出jQuery的威力，下面的api就体现出了jQuery有多好用
+    // 尝试着用原生api实现一下下面的操作，把所有class为mxy的元素去除掉jquery这个class
+    $mxyCollection.removeClass('jquery');
+
+    // 批量写个行内样式
+    $mxyCollection.css({
+        'background-color': 'red',
+        'position': 'relative'
+    });
+</script>
+</html>

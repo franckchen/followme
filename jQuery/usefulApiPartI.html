@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery常用api</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+    <div class="cf"></div>
+    <div class="cf"></div>
+    <input type="checkbox" name="cf" />
+    <script>
+        /**
+         * 为class为cf的元素添加个属性 name='cf'
+         */
+
+        // jQuery的api都是这种链式的，非常优雅
+        $('.cf').first().attr('name', 'cf');
+
+        // 以下是原生js的实现方式
+        var cf = document.getElementsByClassName('cf');
+        // 一定要判断下，是否真的有cf[0]这个元素，也就是找没找到class名为cf的元素
+        // 而且getElementsByClassName这个api还有兼容性问题
+        if (cf[0]) {
+            // 学习一下setAttribute这个api,为DOM节点添加一个属性，属性啥的可以随便取名字
+            // 毕竟html是XML的子集
+            cf[0].setAttribute('myname', 'cf');
+        }
+
+        /**
+         * 来获取一下自定义属性
+         */
+        // attr()这个api不写第二个参数就能够实现了~
+        console.log($('.cf').first().attr('name'));
+
+        // 原生的实现方法
+        console.log(cf[0].getAttribute('myname'));
+
+        /**
+         * 怎么通过jQuery获取第二个class名为cf的元素呢？
+         */
+        console.log($('.cf').eq(1));
+        // 或者可以这样
+        console.log($('.cf:eq(1)'));
+
+        /**
+         * 删除掉原生api添加的myName属性
+         */
+        $('.cf').eq(0).removeAttr('myname');
+
+        /**
+         * 查找name为cf的checkbox，并勾上
+         */
+        $('[name="cf"]').prop('checked', true);
+        // 确认一下是否勾上了
+        console.log($('[name="cf"]').prop('checked'));
+    </script>
+</body>
+</html>
