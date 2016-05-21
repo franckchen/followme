@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>抽屉式动画</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <style>
+        .drawer {
+            width: 200px;
+            margin-bottom: 30px;
+        }
+
+        /* 手风琴头部 */
+        .title {
+            height: 30px;
+            background-color: #0000ff;
+        }
+
+        .content {
+            background-color: #ff7f50;
+        }
+
+        .content-wrapper {
+            /* 这个属性很重要，保证溢出的部分隐藏掉，也就是content超出wrapper就不可见了 */
+            overflow: hidden;
+        }
+
+        #drawer-2 .content-wrapper {
+            position: relative;
+            /* 这里偷懒简写了，如果需要写成控件，那么这个高度应该用js去获取 */
+            height: 144px;
+        }
+
+        #drawer-2 .content {
+            /* 实现了类似于平推上去消失的效果 */
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="drawer" id="drawer-1">
+    <div class="title"></div>
+    <div class="content-wrapper">
+        <div class="content">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+            <div>7</div>
+            <div>8</div>
+        </div>
+    </div>
+</div>
+<!-- 根据数字作为参考，看两个动画的区别 -->
+<div class="drawer" id="drawer-2">
+    <div class="title"></div>
+    <div class="content-wrapper">
+        <div class="content">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+            <div>7</div>
+            <div>8</div>
+        </div>
+    </div>
+</div>
+<script>
+    var $drawer1 = $('#drawer-1');
+    var $drawer2 = $('#drawer-2');
+
+    var toggleState = function () {
+        var $this = $(this);
+
+        // find用来查找孩子，区分和filter的区别
+        var contentWrapper = $this.find('.content-wrapper');
+        var content = $this.find('.content');
+
+        // 包裹层高度
+        var wrapperHeight = contentWrapper.height();
+        // 内容高度
+        var contentHeight = content.height();
+
+        var timer = null;
+
+        if (wrapperHeight > 0) {
+            timer = setInterval(
+                function () {
+                    if (contentWrapper.height() > 0) {
+                        contentWrapper.css({
+                            height: '-=1'
+                        });
+                    }
+                    else {
+                        clearInterval(timer);
+
+                        // 注意，重新绑定
+                        $this.one('click', toggleState);
+                    }
+                },
+                5
+            );
+        }
+        else {
+            timer = setInterval(
+                function () {
+                    if (contentWrapper.height() < contentHeight) {
+                        contentWrapper.css({
+                            height: '+=1'
+                        });
+                    }
+                    else {
+                        clearInterval(timer);
+
+                        // 注意，重新绑定
+                        $this.one('click', toggleState);
+                    }
+                },
+                5
+            );
+        }
+    };
+
+    /**
+     * 1.add()，将两个jQuery元素组合在一起
+     * 2.one,事件触发一次后立刻取消绑定
+     */
+    $drawer1.add($drawer2)
+        .one('click', toggleState);
+</script>
+</body>
+</html>
