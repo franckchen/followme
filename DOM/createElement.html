@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>创建html元素并插入</title>
+</head>
+<body>
+<div id="ref"></div>
+<script>
+    /**
+     * 创建一个div元素并将它的id设置上
+     */
+    var newDiv = document.createElement('div');
+    newDiv.id = 'cf';
+
+    // ref参考div
+    var ref =  document.getElementById('ref');
+
+    /**
+     * js原生的插入api要多扯淡有多扯淡，观察下参数，调用对象是元素要插入的地方
+     * 两个参数第一个是要插入的元素，第二个参数是参考点，元素插入到参考点之前，成为其兄弟元素
+     * 这个api想么想怎么别扭，难道不是调用对象插入到xxx位置吗？js dom元素api设计的很不好
+     */
+    document.body.insertBefore(newDiv, ref);
+
+    // 创建id为mxy的div元素
+    var mxy = document.createElement('div');
+    mxy.id = 'mxy';
+
+    // insertBefore因为是插在参考点之前，所以一定不会是最后的元素，而appendChild是
+    // 令参数里的元素成为调用对象的最后一个孩子
+    document.body.appendChild(mxy);
+
+    /**
+     * 在指定元素内插入元素，确保插入元素为第一个子元素
+     */
+    var cfmxy = function (father, element) {
+        // firstChild，一个很重要的属性，记录下该元素的第一个孩子
+        if (father.firstChild) {
+            // 如果有孩子，则以第一个孩子为参考点，新元素插入在第一个孩子之前
+            father.insertBefore(element, father.firstChild);
+        }
+        else {
+            // 如果没有孩子，那么就直接插入就好了，反正最后一个也就是第一个
+            father.appendChild(element);
+        }
+    };
+
+    cfmxy(mxy, document.createElement('div'));
+    cfmxy(mxy, document.createElement('div'));
+</script>
+</body>
+</html>
