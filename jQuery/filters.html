@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery的各种过滤器</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="cf"></div>
+<div class="cf mxy"></div>
+<span class="cf mxy"></span>
+<div class="cf">
+    <div class="mxy"></div>
+</div>
+<script>
+    /**
+     * 查找具有cf class的div
+     */
+    // 和css选择器完全一样吧
+    var divCf = $('div.cf');
+    // 也可以通过过滤的方式查找
+    // filter内的参数也还是选择器，div可以理解为css的标签选择器
+    divCf = $('.cf').filter('div');
+
+    /**
+     * 再来个例子，找到具有mxy和cf两个class的div元素
+     * 以下几个方法效果相同
+     */
+    var cf = $('div.cf.mxy');
+    cf = $('.cf').filter('div').filter('.mxy');
+    cf = $('.cf').filter('div.mxy');
+
+    /**
+     * 通过这个例子，再来理解下jQuery的华丽链式操作
+     */
+    $('.cf')
+        .filter('.mxy')
+        .addClass('baidu') // 第一步，找了所有的包含cf和mxy两个类的元素，添加baidu这个class
+        .end() // 回复到初始状态，也就是$('.cf')的结果
+        .filter('span')// 找所有有cf这个class的span
+        .text('Hello World'); // 给他里面填上文字
+
+    /**
+     * 找有孩子class名为mxy的带有cf这个class的div...好绕
+     */
+    console.log($('div.cf').has('.mxy'));
+</script>
+</body>
+</html>
