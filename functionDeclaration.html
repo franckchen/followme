@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>函数定义</title>
+</head>
+<body>
+<script>
+    /**
+     * 函数先声明后使用，是顺理成章的事
+     */
+    var cf = function () {
+        console.log('cf');
+    };
+    cf();
+
+    // 下面的代码运行会报错，因为函数执行发生在定义之前
+    // wz();
+    // var wz = function () {
+    //     console.log('wz');
+    // };
+
+    /**
+     * 但是如果换一种定义方式呢？
+     * 实际开发中建议使用第一种方式，尽量遵循先定义后使用的原则，提高代码的可读性
+     */
+    mxy();
+    function mxy() {
+        console.log('mxy');
+    }
+</script>
+</body>
+</html>
