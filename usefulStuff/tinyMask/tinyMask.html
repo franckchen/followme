@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>简单的遮罩实现</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+    <button id="cf">戳我戳我</button>
+    <script>
+        /**
+         * 遮罩
+         * 1.$()典型的工厂模式，根据参数完成对象的实例化，在面试的时候，经常会问你会什么设计模式，回答“单例”，“工厂”，“观察者模式”基本就够了
+         * 2.背下来，这是jQuery生成DOM结构的方法
+         */
+        var mask = $('<div class="img-mask"></div>');
+        mask.css({
+            // 生成遮罩最常用也是最好用的css设置，重点理解下
+            'position': 'absolute',
+            'top': 0,
+            'bottom': 0,
+            'left': 0,
+            'right': 0,
+
+            'padding-top': '40px',
+            // 遮罩一定要层级高一些
+            'z-index': 1000,
+            'background-color': '#000',
+            // opacity是个css3属性，注意ie8及更低版本的ie不支持css3,ie9也只是部分支持
+            'opacity': 0.6,
+            'text-align': 'center',
+            // 如果内容超过了y轴范围，那么出现滚动条，如果没有，就不出现滚动条，一定要背的属性
+            'overflow-y': 'auto',
+            // 如果有内容超出，则不出滚动条，超出的部分隐藏
+            'overflow-x': 'hidden'
+        });
+
+        // 已经是通过jQuery创建一个关闭按键
+        var closeBtn = $('<div id="close-img-mask"></div>');
+        closeBtn.css({
+            // 注意关闭按键的绝对定位参考对象是谁，因为img-mask的position
+            // 为absolute，所以参考的是img-mask的位置
+            'position': 'absolute',
+            'right': '15px',
+            'top': '10px',
+            'width': '40px',
+            'height': '40px',
+            'background-image': 'url(./img/close-btn.png)',
+            // 鼠标移动到叉子图标上面，会变成手型
+            'cursor': 'pointer'
+        });
+
+        // html body
+        var $body = $('body');
+
+        /**
+         * 显示图片遮罩
+         *
+         * @param {string} imgUrl 图片链接地址
+         */
+        var showMask = function (imgUrl) {
+            // 防止出现多个遮罩层，因为点击一次就执行一下showMask,一不小心双击。。。
+            // 所以查一下body有没有class名为img-mask的孩子，如果有则停止函数执行
+            if ($body.find('.img-mask').length > 0) {
+                return;
+            }
+
+            var bigImg = $('<img src="' + imgUrl + '" />');
+            bigImg.css({
+                // max-width也是一个css3属性，在这里可以理解为图片如果小于整体浏览器宽度的80%
+                // 那么就按原尺寸显示，如果大于那么就等比例缩放，不能超过浏览器宽度的80%
+                'max-width': '80%'
+            });
+
+            // 遮层中插入图片并显示, jQuery的DOM节点插入很简单
+            mask.append(bigImg);
+            mask.append(closeBtn);
+            $body.append(mask);
+
+            // 点击关闭按键时移除遮罩
+            closeBtn.on('click', remove);
+
+            mask.on('click', function (e) {
+                // 阻止默认行为和冒泡，为什么这样做呢？想一下，如果做了事件代理，而且事件代理有很复杂的判断逻辑
+                // 点一下遮罩，事件代理复杂逻辑执行一遍，很浪费资源和性能，而且判断如果不严谨，很可能出bug
+                // 应该避免，所以这里要组织下
+                e.stopPropagation();
+                e.preventDefault();
+            });
+        };
+
+        function remove() {
+            mask.remove();
+            // 清空遮罩层理的内容
+            mask.html('');
+        }
+
+        // 与on('click', function () {}) 效果相同
+        $('#cf').click(function () {
+            // 点击后显示遮罩
+            showMask('./img/bigImg.jpg');
+        });
+    </script>
+</body>
+</html>
