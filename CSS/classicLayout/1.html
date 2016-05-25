@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>盛满容器，高度自适应</title>
+    <style>
+        html,
+        body {
+            /* chrome 的body有margin */
+            margin: 0;
+            /* 很重要，必须要让顶层html元素都盛满浏览器高度，才可以 */
+            height: 100%;
+        }
+
+        /* 公用的最好提出来，left和right公用的样式 */
+        .left,
+        .right {
+            float: left;
+            height: 100%;
+        }
+
+        .left {
+            position: relative;
+            width: 80%;
+            background-color: #ff7f50;
+        }
+
+        .right {
+            width: 20%;
+            background-color: #afeeee;
+        }
+
+        .left .top {
+            position: absolute;
+            /* 顶部高度自适应 */
+            top: 0;
+            width: 100%;
+            height: 100px;
+            background-color: #dda0dd;
+        }
+
+        .left .rest {
+            position: absolute;
+            /* 距离顶部100px,距离底部为0，实现了高度自适应 */
+            top: 100px;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 注意调整浏览器高度观察变化，始终不会出现滚动条，高度自适应 -->
+    <div class="left">
+        <!-- 一个高度固定的顶部条 -->
+        <div class="top"></div>
+        <!-- 剩下的部分高度自适应 -->
+        <div class="rest"></div>
+    </div>
+    <!-- 这个div整体高度自适应 -->
+    <div class="right"></div>
+</body>
+</html>
