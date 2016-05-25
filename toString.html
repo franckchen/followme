@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>toString方法</title>
+</head>
+<body>
+<script>
+    /**
+     * js中除了null和undefined外任何类型都有个toString()方法，这是一个很重要的特性，针对每个类型，toString的
+     * 作用也各不相同
+     */
+
+    var cf = 1;
+    // 数字调用toString是数字->字符串的转换
+    console.log(cf.toString());
+    cf = 'cf';
+    // 字符串的toString没啥作用
+    console.log(cf.toString());
+    // 针对布尔，是将true,false转换为'true','false'字符串
+    cf = true;
+    console.log(typeof cf.toString());
+    // 函数调用toString，打印函数定义，这是我面试百度时的考题，但比这个难
+    cf = function () {
+        console.log('chen fan');
+    };
+    console.log(cf.toString());
+    // 这个比较生僻，看下打印结果就好了
+    cf = [1, 2, 3];
+    console.log(cf.toString());
+    // 日期的
+    cf = new Date();
+    console.log(cf.toString());
+    // object的toString最特别，也就是[... ...]这种形式
+    cf = {
+        cf: 'chen fan'
+    };
+    console.log(cf.toString());
+
+    /**
+     * Object的原型的toString方法是最特殊的，被用来判断类型
+     */
+    cf = function () {
+        console.log('chen fan');
+    };
+    console.log(Object.prototype.toString.call(cf));
+    console.log(Object.prototype.toString.call(true));
+    console.log(Object.prototype.toString.call(1));
+    console.log(Object.prototype.toString.call([1, 2, 3]));
+    console.log(Object.prototype.toString.call('123'));
+    console.log(Object.prototype.toString.call(/abc/)); // 正则,注意typeof /abc/也是 object
+
+    // 还记得数组判断的不便利性吧？
+    cf = [1, 2, 3];
+    console.log(typeof cf);
+    // 回一下，这个方法虽然能判断，但是有兼容性问题
+    console.log(Array.isArray(cf));
+
+    // 所以也就催生了如下的判断方法
+    console.log(Object.prototype.toString.call(cf) === '[object Array]');
+
+    // 正则也可以用
+    console.log(Object.prototype.toString.call(/abc/) === '[object RegExp]');
+</script>
+</body>
+</html>
