@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>添加class的通用元代</title>
+</head>
+<body>
+    <div class="cf"></div>
+    <script>
+        // 注意学习下写注释的方式，js有自己的注释风格标注jsDoc标准，写好注释ide能够分析注释，并且在
+        // 后面的使用中给你提示，调用错误时会帮你做判断，非常有用
+        /**
+         * 为目标元素添加className，我们不依赖jQuery~
+         *
+         * @public
+         * @param {HTMLElement} element 目标元素
+         * @param {string} className 要添加的className
+         *
+         * @return {HTMLElement} 目标元素
+         */
+        var addClass = function (element, className) {
+            /**
+             * 优先使用classList,这个属性老版本浏览器不支持，所以后面会有
+             * 兼容性处理，IE是前端届的深坑，到了ie10才支持了classList这个东西
+             * classList提供了诸多好用的api用于控制class,比如add -- 添加一个class,
+             * remove -- 移除一个class, contains -- 判断是否包含某个class 等等
+             */
+            if (element.classList) {
+                element.classList.add(className);
+            }
+            else {
+                // 在没有classList的情况下就需要使用className来处理了
+                var classes = element.className
+                    // 分割字符串，注意为啥要用正则呢？因为经常有人手一抖，在两个class间多打了个空格
+                    // 而className中，通过/s+也只能匹配到空格，所以就是以空格进行分割类名
+                    ? element.className.split(/\s+/)
+                    : [];
+
+                for (var i = 0, n = classes.length; i < n; i++) {
+                    // 如果已经有了这个class就不要添加了
+                    if (classes[i] === className) {
+                        return element;
+                    }
+                }
+
+                classes.push(className);
+                // 重新拼装为字符串
+                element.className = classes.join(' ');
+            }
+
+            return element;
+        };
+    </script>
+</body>
+</html>
