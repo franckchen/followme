@@ -1,9 +1,19 @@
-2016.05.17  
-DOM学习:  
-getElementsByClassName -> getElementsByTagName -> childNodesAndNodeType  
+**新内容：**  
+[学习下函数定义的知识](https://github.com/franckchen/followme/blob/master/functionDeclaration.html)  
+[如何用原生js删除一个DOM节点](https://github.com/franckchen/followme/blob/master/DOM/howToRemoveAElement.html)  
+[如何用原生js创建一个DOM节点](https://github.com/franckchen/followme/blob/master/DOM/createElement.html)  
+[这个目录里是一些常用的布局及实现方法，一定要好好学习，并动手练练，布局必须过关，会实时更新的](https://github.com/franckchen/followme/tree/master/CSS/classicLayout)  
+[这个目录用来学习事件，目前就只有最基本的](https://github.com/franckchen/followme/tree/master/event)  
+[这个目录下是前端最常用的一些动画教学](https://github.com/franckchen/followme/tree/master/animation)  
+[2种折展动画及实现](https://github.com/franckchen/followme/blob/master/animation/drawer.html)  
+[这个目录下面是一些工具代码，读一读，能够有提高，而且这些代码注意保存下来，未来你会经常用到](https://github.com/franckchen/followme/tree/master/lib)  
+[这个目录下会有一些我觉得对于学习很有利的实践例子，属于综合练习](https://github.com/franckchen/followme/tree/master/usefulStuff)  
 
-applyAndCall新代码例子  
-string  
-
-面授内容
-cdn与script跨域
+面授内容  
+cdn与script跨域  
+emmet  
+js加载  
+单线程  
+前处理器  
+压缩混淆  
+事件模型  
