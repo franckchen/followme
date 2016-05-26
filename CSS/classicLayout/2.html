@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>内外元素均宽度自适应，中间加间隔, 每行四等分</title>
+    <script>
+        /**
+         * 这个布局一定要自己动手练一练
+         * 注意，这个布局没有用任何css3属性
+         * 需要仔细体会~自己动手模仿一个，很练习基本功，注意调整浏览器尺寸看效果
+         */
+    </script>
+    <style>
+        html,
+        body {
+            /* chrome下，body有讨厌的margin */
+            margin: 0;
+            height: 100%;
+        }
+
+        .container {
+            /* 高度撑满容器，注意参考的是父级元素，要求父级元素一定有高度才可以 */
+            height: 100%;
+            width: 60%;
+            /* 居中 */
+            margin: 0 auto;
+            background-color: #add8e6;
+        }
+
+        .row {
+            /* 上 左右 下 */
+            /* 这个-5px的margin很关键，每个item左右边距是5px，那么container中最左和最右的元素距离容器会产生5px */
+            /* 边距，不能顶到最左、最右，所以让row有个-5px的边距，宽度大于container,两侧的留白实际上 */
+            /* 现在在容器外面，达到了我们预期的效果，负margin是前端布局中常用的技巧 */
+            margin: 0 -5px 5px;
+        }
+
+        /* 经典的清除浮动代码，注意row的所有孩子，均float:left,脱离文档流，导致row元素无法被孩子的高度撑高 */
+        /* 高度是0，会引起很多问题，所以要通过下面的trick来实现清除浮动，恢复高度，去除下面段落的代码，会发现.row高度为0 */
+        .row:before,
+        .row:after {
+            display: table;
+            content: "";
+        }
+        .row:after {
+            clear: both;
+        }
+
+        .item-container {
+            /* 4等分 */
+            float: left;
+            width: 25%;
+        }
+
+        .item {
+            height: 100px;
+            /* 上下0，左右5像素, 每个item的内距也就是5 * 2 = 10px */
+            margin: 0 5px;
+            background-color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="item-container">
+                <div class="item"></div>
+            </div>
+            <div class="item-container">
+                <div class="item"></div>
+            </div>
+            <div class="item-container">
+                <div class="item"></div>
+            </div>
+            <div class="item-container">
+                <div class="item"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="item-container">
+                <div class="item"></div>
+            </div>
+            <div class="item-container">
+                <div class="item"></div>
+            </div>
+            <div class="item-container">
+                <div class="item"></div>
+            </div>
+            <div class="item-container">
+                <div class="item"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
