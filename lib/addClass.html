@@ -32,9 +32,8 @@
                 // 在没有classList的情况下就需要使用className来处理了
                 var classes = element.className
                     // 分割字符串，注意为啥要用正则呢？因为经常有人手一抖，在两个class间多打了个空格
-                    // 而className中，通过/s+也只能匹配到空格，所以就是以空格进行分割类名
-                    // 这里你可以选择split(' '),然后在对每个class名进行trim,但是trim也有兼容性问题
-                    // 所以这是最佳解决方案了
+                    // 而className中，通过/s+也只能匹配到空格，且可为多个,所以就是以空格进行分割类名
+                    // 这里你可以选择split(' '),性能会不好
                     ? element.className.split(/\s+/)
                     : [];
 
