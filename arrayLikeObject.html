@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>类数组对象</title>
+</head>
+<body>
+<div class="cf"></div>
+<div class="cf"></div>
+<div class="cf"></div>
+<div class="cf"></div>
+<script>
+    /**
+     * 和其他语言一样，javascript也有自己的糟粕，他们大多由于历史原因造成，
+     * 现在纠结也没必要了，其中之一就是类数组型对象，类数组型对象的特点是成员名为数字，
+     * 从0开始，同时和数组一样，有个length成员，记录成员个数，但它偏偏不是array,比如
+     * HTMLCollection和arguments
+     */
+    var cfs = document.getElementsByClassName('cf');
+    // 由于不是真正的数组，所以没有forEach方法
+    console.log(cfs.forEach);
+
+    // 以下是正确的遍历方式
+    Array.prototype.forEach.call(cfs, function (element) {
+        console.log(element);
+    });
+
+    /**
+     * 我们也可以自己创造个
+     */
+    var cf = {
+        0: 'chen',
+        1: 'fan',
+        length: 2
+    };
+    Array.prototype.forEach.call(cf, function (element) {
+        console.log(element);
+    });
+
+    // 当然我们也可以用for循环去处理
+    var i;
+    var len;
+    for(i = 0, len = cfs.length; i < len; i++) {
+        console.log(cfs[i]);
+    }
+
+    /**
+     * ES6为我们提供了好用的api,用于处理这类恶心的类数组对象
+     */
+
+    // 现代浏览器中，进入严格模式，开启ES6语法,注意严格模式只对他定义之后的代码生效，前面的无效
+    'use strict';
+    var mxy = Array.from(cfs);
+    mxy.forEach(function (element) {
+        console.log(element);
+    });
+
+    var j;
+    // 下面的代码抛出异常，证明类数组对象无法迭代
+    // for (j of cf) {
+    //     console.log(j);
+    // }
+
+    // 数组就不一样了, 注意for...of...循环是ES6语法，大部分老浏览器不支持
+    for (j of mxy) {
+        console.log(j);
+    }
+</script>
+</body>
+</html>

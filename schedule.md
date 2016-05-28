@@ -9,6 +9,9 @@
 [这个目录下面是一些工具代码，读一读，能够有提高，而且这些代码注意保存下来，未来你会经常用到](https://github.com/franckchen/followme/tree/master/lib)  
 [这个目录下会有一些我觉得对于学习很有利的实践例子，属于综合练习](https://github.com/franckchen/followme/tree/master/usefulStuff)  
 
+**5.28**  
+[类数组对象](https://github.com/franckchen/followme/blob/master/arrayLikeObject.html)  
+
 面授内容  
 cdn与script跨域  
 emmet  
