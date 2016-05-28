@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>inline-block 3px问题</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            background-color: #9acd32;
+        }
+
+        .container {
+            width: 960px;
+            /* 块级元素居中 */
+            margin: 0 auto;
+            /* 应对3px问题的关键,注意是在inline-block的父级元素上添加 */
+            font-size: 0;
+        }
+
+        .cf {
+            display: inline-block;
+            width: 33.33%;
+            height: 300px;
+            /* font-size属性会继承,所以孩子要恢复一下字体大小 */
+            font-size: 12px;
+            /* 内连元素顶对齐,也就是全部顶到顶部,注意设置对象是inline-block对象本身 */
+            vertical-align: top;
+            background-color: #dda0dd;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="cf">1</div>
+    <div class="cf">2</div>
+    <div class="cf">3</div>
+</div>
+</body>
+</html>
