@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>清除浮动</title>
+    <style>
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+            background-color: #008b8b;
+        }
+
+        .container {
+            width: 960px;
+            /* 注意这里没有设置高度,因为希望子元素能够撑高父元素 */
+            margin: 0 auto;
+        }
+
+        /* 清除浮动经典代码,要背下来,清除浮动后父元素正常被孩子撑高,注意是加在什么位置 */
+        .container:before,
+        .container:after {
+            display: table;
+            content: "";
+        }
+        .container:after {
+            clear: both;
+        }
+
+        .cf {
+            /* container元素下的所有孩子已经浮动 */
+            float: left;
+            height: 300px;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .yellow {
+            background-color: yellow;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="cf red">1</div>
+    <div class="cf yellow">2</div>
+    <div class="cf blue">3</div>
+</div>
+</body>
+</html>
