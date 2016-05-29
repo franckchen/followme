@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    var Human = function (name, age) {
+        this.name = name;
+        this.age = age;
+    };
+
+    // 对象的constructor属性用于返回创建该对象的函数，也就是我们常说的构造函数
+    var cf = new Human('chefan', 28);
+    console.log(cf.constructor);
+
+    // 用instanceOf判断cf是否是Human的实例
+    console.log(cf instanceof Human);
+
+    // 再回忆一下判断类型是否是数组的方法之一instanceof,一定要记住这个判断方法有坑
+    console.log([1, 2, 3] instanceof Array);
+
+    // 输出[native code]表示输出是浏览器底层代码，不是js用户看不到
+    // 所以就不必纠结了
+    var str = 'cf';
+    console.log(str.constructor);
+</script>
+</body>
+</html>
