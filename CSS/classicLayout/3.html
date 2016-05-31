@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>垂直居中</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            height: 100%;
+        }
+
+        /* 尽量减少对于body和html的修改，养成添加container这个包裹的好习惯 */
+        .container {
+            position: relative;
+            height: 100%;
+            background-color: #add8e6;
+        }
+
+        .vertical {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 400px;
+            margin: -200px 0 0 -200px;
+            background-color: #00ff7f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="vertical"></div>
+    </div>
+</body>
+</html>
