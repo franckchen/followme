@@ -11,6 +11,9 @@
 
 **5.28**  
 [类数组对象](https://github.com/franckchen/followme/blob/master/arrayLikeObject.html)  
+[constructor](https://github.com/franckchen/followme/blob/master/constructor.html)  
+[清除浮动问题](https://github.com/franckchen/followme/blob/master/CSS/problems/clearFloat.html)  
+[inline-block 3px 问题](https://github.com/franckchen/followme/blob/master/CSS/problems/inlineBlock3px.html)  
 
 面授内容  
 cdn与script跨域  
