@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>垂直居中2</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            height: 100%;
+            background-color: #add8e6;
+        }
+
+        .container {
+            /* table布局，ie8以下不支持，但是现代前端基本要求ie8以下浏览器兼容，但不需要视觉最优 */
+            display: table;
+            /* 容器盛满 */
+            width: 100%;
+            height: 100%;
+        }
+
+        .vertical-middle {
+            /* 不要问为什么了，table布局就是这样子的，背下来即可，非常实用的容器高度未知的垂直居中解决方案 */
+            display: table-cell;
+            /* 另自身垂直居中，注意不需要预先知道容器高度 */
+            vertical-align: middle;
+            /* 文字居中 */
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- 下面的div里可以任意添加文字，或添加子div，永远垂直居中 -->
+    <div class="vertical-middle">abc</div>
+</div>
+</body>
+</html>

@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>垂直居中</title>
     <style>
+        /**
+         * 这种垂直居中的最大问题就是要预先知道需要居中的容器的体积
+         */
         body,
         html {
             margin: 0;
@@ -19,10 +22,12 @@
 
         .vertical {
             position: absolute;
+            /* 放中间 */
             top: 50%;
             left: 50%;
             width: 400px;
             height: 400px;
+            /* 注意，通过负margin解决50%带来的多余偏移，所以，这种居中的最大问题，就是需要固定居中容器的尺寸 */
             margin: -200px 0 0 -200px;
             background-color: #00ff7f;
         }
