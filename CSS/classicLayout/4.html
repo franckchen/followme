@@ -12,17 +12,18 @@
         }
 
         .container {
-            /* table布局，ie8以下不支持，但是现代前端基本要求ie8以下浏览器兼容，但不需要视觉最优 */
+            /* table布局，ie8以下不支持，但是现代前端基本要求兼容ie8以下浏览器，但不需要视觉最优 */
             display: table;
             /* 容器盛满 */
             width: 100%;
             height: 100%;
         }
 
+        /* 这个class对应的div在container容器中垂直居中，且不需要预先知道这个.vertical-middle这个class对应的元素的高度 */
         .vertical-middle {
             /* 不要问为什么了，table布局就是这样子的，背下来即可，非常实用的容器高度未知的垂直居中解决方案 */
             display: table-cell;
-            /* 另自身垂直居中，注意不需要预先知道容器高度 */
+            /* 令自身垂直居中，注意不需要预先知道容器高度 */
             vertical-align: middle;
             /* 文字居中 */
             text-align: center;
