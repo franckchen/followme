@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>盒模型</title>
+    <style>
+        /* 设想的预期很简单，希望4个元素并排排列，每个占4分之1，每个元素有边框，有间距 */
+        .row {
+            width: 800px;
+            margin: 0 auto;
+        }
+
+        /* 清除浮动 */
+        .row:before,
+        .row:after {
+            display: table;
+            content: "";
+        }
+        .row:after {
+            clear: both;
+        }
+
+        .row-1 .item {
+            /* 预期是并排的，所以设置浮动 */
+            float: left;
+            /* 预期是每个item占四分之一，所以也就是每个成员宽200px */
+            width: 200px;
+            height: 150px;
+            /* 预想每个元素有5px间隔 */
+            margin: 0 5px;
+            /* 预想没元素有1px的黑边框 */
+            border: 1px solid #000000;
+            background-color: #00ffff;
+        }
+
+        .row-2 .item {
+            /* 预期是并排的，所以设置浮动 */
+            float: left;
+            /* 为什么是188px,因为减去了左右margin 5px和两侧border 2px */
+            width: 188px;
+            height: 150px;
+            /* 预想每个元素有5px间隔 */
+            margin: 0 5px;
+            /* 预想没元素有1px的黑边框 */
+            border: 1px solid #000000;
+            background-color: #00ffff;
+        }
+
+        .row-3 .item {
+            float: left;
+            /* 一个非常实用的css3属性，目的是修改盒模型，现在border和padding全在盒模型内部，也就是我们设置了200px宽
+               ,有border的话，那么宽度(width)会自动锁小，以适应border所占空间，总体盒模型宽度为200px */
+            box-sizing: border-box;
+            /* margin永远超脱于盒模型之外 */
+            width: 190px;
+            height: 150px;
+            margin: 0 5px;
+            border: 1px solid #000000;
+            background-color: #00ffff;
+        }
+    </style>
+</head>
+<body>
+<!-- 达不到预期效果，因为margin、padding和border都占宽高，也就是一个盒子的宽度是width + 左右padding + 左右border -->
+<!-- 高度也是样子，外加每个盒子都有margin，宽度更是早早超出了预设的800px，所以换行了 -->
+<div class="row row-1">
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+</div>
+<!-- 这一排复合了预期，因为我们合理的计算了宽度 -->
+<div class="row row-2">
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+</div>
+<!-- 利用修改盒模型的手段，实现了并排排列 -->
+<div class="row row-3">
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+</div>
+</body>
+</html>
