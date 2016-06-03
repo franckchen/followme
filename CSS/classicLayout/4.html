@@ -28,12 +28,24 @@
             /* 文字居中 */
             text-align: center;
         }
+
+        /* 真正居中的东西。外层的那个是隐藏的容器 */
+        .center-content {
+            /* 高度随意调整，看效果，所以不需要知道居中元素的具体高度，也可以自使用式居中，很高级 */
+            width: 100px;
+            height: 100px;
+            background-color: #00ff7f;
+        }
     </style>
 </head>
 <body>
 <div class="container">
     <!-- 下面的div里可以任意添加文字，或添加子div，永远垂直居中 -->
-    <div class="vertical-middle">abc</div>
+    <!-- 这个居中的东西，一定要理解为它是个容器，不要尝试用它做什么，他就是容器 -->
+    <div class="vertical-middle">
+        <!-- 里面的东西才是我们真正想要居中的东西，容器在前端很常用、很常见要体会 -->
+        <div class="center-content"></div>
+    </div>
 </div>
 </body>
 </html>
