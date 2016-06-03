@@ -1,4 +1,4 @@
-**HTML**  
+﻿**HTML**  
 *form  
 *iframe  
 
@@ -24,6 +24,12 @@
 *事件模型  
 
 **HTML5**  
+webworker  
+audio  
+video  
+canvas基础  
+离线应用  
+地理位置  
 
 **工程化**  
 *模块化(AMD,CommonJS)  
@@ -32,6 +38,7 @@
 *包管理(npm,bower)  
 *版本控制  
 *压缩混淆(uglify,cssnano)  
+*项目路径规划  
 
 **模板**  
 *handlerbars  
@@ -39,10 +46,8 @@
 *ejs  
 
 **前端重点概念**  
-*单线程  
-*异步  
-*非阻塞  
-*事件轮寻  
+*事件模型  
+*兼容性问题  
 
 **技巧**  
 *异步问题化解(promise,回调,emitter)  
@@ -50,6 +55,11 @@
 *常用基础代码  
 
 **node.js**  
+*http  
+*socket  
+*文件操作  
+*npm仓库  
+*代码调试  
 
 **库**  
 *jQuery  
@@ -68,6 +78,7 @@
 **移动端**  
 *手势操作与Hammer.js  
 *移动端常见问题及化解(点击击穿，fixed定位，回退刷新等)  
+*原生能力调用  
 
 **测试**  
 *jasmine, mocha  
@@ -116,8 +127,10 @@
 
 **新技术**  
 *fetch API  
+*typescript  
 
 **程序员技能**  
 *markdown  
 *chrome工具  
 *git  
+*svn  
