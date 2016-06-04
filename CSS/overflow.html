@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>超范围</title>
+    <style>
+        .cf {
+            width: 200px;
+            height: 200px;
+            margin-top: 15px;
+            background-color: #00ffff;
+        }
+
+        .mxy {
+            /* 孩子的尺寸大于父亲的 */
+            height: 300px;
+            width: 300px;
+            background-color: #ff7f50;
+        }
+
+        .cf-2 {
+            /* 超出的部分，也就是孩子大于父亲的部分，隐藏 */
+            overflow: hidden;
+        }
+
+        .cf-3 {
+            /* 超出部分出滚动条，滚动查看 */
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="cf cf-1">
+        <!-- 默认情况下，孩子尺寸大于父亲，继续可见 -->
+        <div class="mxy mxy-1"></div>
+    </div>
+    <div class="cf cf-2">
+        <div class="mxy mxy-2"></div>
+    </div>
+    <div class="cf cf-3">
+        <div class="mxy mxy-3"></div>
+    </div>
+</body>
+</html>

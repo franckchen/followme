@@ -15,7 +15,14 @@
 [清除浮动问题](https://github.com/franckchen/followme/blob/master/CSS/problems/clearFloat.html)  
 [inline-block 3px 问题](https://github.com/franckchen/followme/blob/master/CSS/problems/inlineBlock3px.html)  
 
-面授内容  
+**6.04**
+[垂直居中例子修改](https://github.com/franckchen/followme/blob/master/CSS/classicLayout/4.html)  
+[盒模型1](https://github.com/franckchen/followme/blob/master/CSS/box.html)  
+[盒模型2](https://github.com/franckchen/followme/blob/master/CSS/box2.html)  
+[盒模型2](https://github.com/franckchen/followme/blob/master/CSS/box2.html)  
+[闭包](https://github.com/franckchen/followme/blob/master/closure.html)  
+
+**面授内容**  
 cdn与script跨域  
 emmet  
 js加载  
