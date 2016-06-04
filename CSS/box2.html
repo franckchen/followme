@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>盒模型续</title>
+    <style>
+        /* 设想是800像素宽的空间被4个200px宽的div所占据,每个div有1px的框框 */
+        .row {
+            width: 800px;
+            margin: 0 auto;
+            /* 解决inline-block 3px问题 */
+            font-size: 0;
+        }
+
+        .item {
+            display: inline-block;
+            width: 200px;
+            height: 150px;
+            /* padding在盒模型内，所以受background-color影响，这个一定要记清楚 */
+            padding: 5px;
+            background-color: #00ffff;
+            border: 1px solid #000000;
+        }
+
+        /* 权重大于.item这个选择器，所以会覆盖.item选择器设置的样式 */
+        .row-2 .item {
+            /* 首先一定要明确他是css3属性,ie8及更早版本的ie不支持 */
+            /* 其次他修改了盒模型，现在容器总体宽度为200px,而padding，border会挤压width属性的值，可以在浏览器中观察下 */
+            /* 现在width自动变成了188px,box-sizing还有padding-box和content-box两个可设值，其中padding-box */
+            /* 设为padding-box时，宽度固定后padding值会自动挤压width所占大小，content-box就是原生的，也就是标准行为 */
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+<!-- 实际结果有换行，每个div的宽度是width + 两侧padding + 两侧border, 高度的换算方式也是这样的 -->
+<div class="row">
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+</div>
+<div class="row row-2">
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+</div>
+</body>
+</html>
