@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>闭包例子</title>
+</head>
+<body>
+<script>
+    var count = function () {
+        var a = 0;
+
+        return a++;
+    };
+
+    console.log(count());
+    console.log(count());
+    console.log(count());
+    console.log(count());
+
+    count = function () {
+        var a = 0;
+
+        return function () {
+            return ++a;
+        };
+    }();
+
+    // 成功实现计数
+    console.log(count());
+    console.log(count());
+    console.log(count());
+    console.log(count());
+    console.log(count());
+
+    // 一个失败的例子
+    count = function () {
+        var a = 0;
+
+        return function () {
+            return ++a;
+        }();
+    };
+
+    console.log(count());
+    console.log(count());
+    console.log(count());
+    console.log(count());
+
+    /**
+     * 实现参数提前绑定
+     */
+    var curry = function (func, params) {
+        return function () {
+            func.apply(null, params);
+        };
+    };
+
+    var cf = function (name) {
+        console.log(name);
+    };
+
+    var mxy = curry(cf, ['mxy']);
+    mxy();
+</script>
+</body>
+</html>
