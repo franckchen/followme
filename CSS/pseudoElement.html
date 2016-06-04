@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>伪元素</title>
+    <style>
+        .item {
+            /* 方便未读消息红点定位 */
+            position: relative;
+            width: 200px;
+            height: 25px;
+            /* line-height和height相等,令文字垂直居中 */
+            line-height: 25px;
+            padding-left: 5px;
+            margin-bottom: 1px;
+            background-color: #d3d3d3;
+            border-radius: 5px;
+        }
+
+        /*
+         * 1.一个元素可以插入before和after两种伪元素
+         * 2.使用伪元素来实现未读消息红点,好处很简单,不需要写任何HTML元素,能不插入DOM元素
+         * 就最好不插入
+         */
+        .new-msg::after {
+            display: block;
+            /* 为红色圆点定好位置 */
+            position: absolute;
+            right: 5px;
+            top: 6px;
+            /* 伪元素内没有任何内容 */
+            content: "";
+            width: 10px;
+            height: 10px;
+            /* 1.border-radius是CSS3属性,IE8及以下不支持
+             * 2.宽高相等,border-radius: 50%,形成圆形
+             */
+            border-radius: 50%;
+            background-color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="item new-msg">Franck Chan</div>
+    <div class="item">Jack Ma</div>
+    <div class="item">Robin Li</div>
+</body>
+</html>
