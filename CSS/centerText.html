@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>文字居中</title>
+    <style>
+        /* 这是常用的另文字居中的另一种方法 */
+        .cf {
+            /* 一定要注意没有设置高度，是利用padding值撑起了盒模型 */
+            width: 400px;
+            /* 上下padding的值可以随便修改，文字依然居中，因为合理地利用了盒模型，上下padding相等，文字自然就居中了 */
+            padding: 50px 2px;
+            text-align: center;
+            background-color: #00bfff;
+        }
+
+        .outer {
+            display: inline-block;
+            /* padding可以随意调节，结果都是居中，合理利用了盒模型，以及背景色应用到padding */
+            padding: 30px;
+            background-color: #00bfff;
+        }
+
+        /* 居中 */
+        .inner {
+            width: 100px;
+            height: 100px;
+            background-color: #ffa500;
+        }
+    </style>
+</head>
+<body>
+    <div class="cf">
+        这段文字一定是居中的
+    </div>
+    <!-- 不光是文字，元素也可以模拟 -->
+    <div class="outer">
+        <div class="inner"></div>
+    </div>
+</body>
+</html>
