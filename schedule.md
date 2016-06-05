@@ -28,6 +28,8 @@
 [合理利用盒模型，另文字居中](https://github.com/franckchen/followme/blob/master/CSS/centerText.html)  
 [css伪元素，第一期](https://github.com/franckchen/followme/blob/master/CSS/pseudoElement.html)  
 [vertical-align例子](https://github.com/franckchen/followme/blob/master/CSS/verticalAlign.html)  
+[===比较问题](https://github.com/franckchen/followme/blob/master/theProblemofCompare.html)  
+[引用问题](https://github.com/franckchen/followme/blob/master/citeProblem.html)  
 
 **面授内容**  
 cdn与script跨域  
