@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>height和line-height</title>
+    <style>
+        #cf {
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            background-color: #4169e1;
+        }
+
+        #wz {
+            width: 200px;
+            /* line-height本来就应该用来设置行高，用途是让其中的文字和行内元素居中，所以尽量避免脱离height单独使用line-height */
+            line-height: 200px;
+            background-color: #4169e1;
+        }
+
+        .mxy {
+            /* 行高等于高度，文字垂直居中 */
+            height: 50px;
+            line-height: 50px;
+            background-color: #f4a460;
+        }
+    </style>
+</head>
+<body>
+<div id="cf"></div>
+<!-- 这个元素根本看不到背景色 -->
+<div id="wz"></div>
+<div class="mxy">123</div>
+</body>
+</html>
