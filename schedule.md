@@ -30,10 +30,10 @@
 [vertical-align例子](https://github.com/franckchen/followme/blob/master/CSS/verticalAlign.html)  
 [===比较问题](https://github.com/franckchen/followme/blob/master/theProblemofCompare.html)  
 [引用问题](https://github.com/franckchen/followme/blob/master/citeProblem.html)  
+[fixed定位知识点](https://github.com/franckchen/followme/blob/master/CSS/fixed.html)  
 
 **面授内容**  
 cdn与script跨域  
-emmet  
 js加载  
 单线程  
 前处理器  
