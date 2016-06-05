@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>引用问题</title>
+</head>
+<body>
+<script>
+    var cf = {
+        name: 'chen fan'
+    };
+
+    var cf2 = cf;
+
+    cf2.name = 'ma xin yu';
+
+    // 因为是引用，所以修改了cf2的值也影响到了cf1
+    console.log(cf.name);
+
+    // 数组也有相同的问题,面试问的时候一定不要糊涂
+    cf = [1, 2, 3];
+    cf2 =  cf;
+
+    cf2[0] = 2;
+    console.log(cf[0]);
+
+    // 因为
+    console.log(typeof {name: 'chenfan'});
+</script>
+</body>
+</html>

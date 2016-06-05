@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>深入链的理解</title>
+</head>
+<body>
+<script>
+    var scope1 = function () {
+        var scope2 = function () {
+            cf = 'chenfan';
+        }();
+    };
+
+    scope1();
+
+    console.log(window.cf);
+
+    var scope3 = function () {
+        var cf = 'mxy';
+
+        var scope4 = function () {
+            cf = 'chenfan';
+        }();
+
+        console.log(cf);
+    };
+
+    scope3();
+
+    console.log(window.cf);
+
+    var scope5 = function () {
+        var cf = 'mxy';
+
+        var scope6 = function () {
+            var cf = 'cf'
+        }();
+
+        console.log(cf);
+    };
+
+    scope5();
+
+    console.log(window.cf);
+</script>
+</body>
+</html>
