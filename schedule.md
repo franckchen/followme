@@ -23,6 +23,12 @@
 [闭包](https://github.com/franckchen/followme/blob/master/closure.html)  
 [超范围](https://github.com/franckchen/followme/blob/master/CSS/overflow.html)  
 
+**6.05**  
+[区分height和line-height](https://github.com/franckchen/followme/blob/master/CSS/line-heightAndheight.html)  
+[合理利用盒模型，另文字居中](https://github.com/franckchen/followme/blob/master/CSS/centerText.html)  
+[css伪元素，第一期](https://github.com/franckchen/followme/blob/master/CSS/pseudoElement.html)  
+[vertical-align例子](https://github.com/franckchen/followme/blob/master/CSS/verticalAlign.html)  
+
 **面授内容**  
 cdn与script跨域  
 emmet  
