@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>vertical-align</title>
+    <style>
+        .container {
+            width: 600px;
+            height: 100px;
+            line-height: 100px;
+            margin: 0 auto 10px auto;
+        }
+
+        .cf {
+            display: inline-block;
+            background-color: #ffa500;
+            /* vertical-align的几个值，base-line,middle,top,bottom，手工替换下体会下 */
+            vertical-align: middle;
+        }
+
+        .cf-1 {
+            height: 40px;
+            line-height: 40px;
+        }
+
+        .cf-2 {
+            height: 50px;
+            line-height: 50px;
+        }
+
+        .cf-3 {
+            height: 60px;
+            line-height: 60px;
+        }
+
+        /* >一个css3属性，它代表.line的孩子，注意，一定选择不上孙子，搞清楚和.line * 这个选择器的区别 */
+        /* 所以这个选择器的意思就是.line的所有孩子 */
+        .line>* {
+            display: inline-block;
+        }
+
+        /* radio和输入框总是对不齐，所以用vertical-align调整一下就好了 */
+        .mxy {
+            margin: 0;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="#" class="cf cf-1">链接1</a>
+        <a href="#" class="cf cf-2">链接2</a>
+        <a href="#" class="cf cf-3">链接3</a>
+    </div>
+    <div class="line">
+        <input type="radio" class="mxy" />
+        <input type="text" />
+    </div>
+</body>
+</html>
