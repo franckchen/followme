@@ -17,11 +17,13 @@
 *常考知识点(换行，省略...)  
 *flex布局  
 *table布局  
+*伪类和伪元素  
 
 **前端**  
 *ajax  
 *JSONP  
 *事件模型  
+*jsDoc规则  
 
 **HTML5**  
 webworker  
@@ -30,6 +32,9 @@ video
 canvas基础  
 离线应用  
 地理位置  
+本地存储  
+历史  
+formData  
 
 **工程化**  
 *模块化(AMD,CommonJS)  
@@ -53,6 +58,7 @@ canvas基础
 *异步问题化解(promise,回调,emitter)  
 *柯里化  
 *常用基础代码  
+*不可变数据  
 
 **node.js**  
 *http  
