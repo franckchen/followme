@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>微信</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            height: 100%;
+
+        }
+        #container {
+            height: 100%;
+            position: relative;
+
+            /*如何设置最小宽高？  压缩到590*890就不能再变小了*/
+        }
+
+
+        #left-part {
+            width: 50px;
+            height: 100%;
+            background-color: darkslategrey;
+            position: absolute;
+
+        }
+
+        #left-part img {
+            display: block;
+            width: 30px;
+            height: 30px;
+            margin: 10px 10px 0;    /*使图标居中显示*/
+            cursor: pointer;
+        }
+
+
+
+        #left-part #bottom_img {
+            display: block;  /*img貌似是行内元素,变成能设置大小的块级元素*/
+            width: 30px;
+            height: 30px;
+
+            position: absolute;   /*让图标滚下面去*/
+            bottom: 10px;
+        }
+
+        #center-part {
+            width: 250px;
+            height: 100%;
+            background-color: silver;
+
+            position: absolute;
+            left:50px;
+        }
+
+        #search {
+            width: 100%;
+            height: 45px;
+            background-color: aqua;
+
+            font-size: 0;
+
+            position: relative;
+
+        }
+
+        #search-kuang {
+            height: 25px;
+            width: 190px;
+            background-color: fuchsia;
+
+            display: inline-block;
+
+            position: absolute;
+            left: 10px;
+            top:10px;
+
+            cursor: text;
+        }
+
+        #search-kuang span {
+            font-size: 14px;
+            line-height: 25px;      /*让文字垂直居中*/
+            margin-left: 10px;
+        }
+
+        #search-kuang::after {   /*类似小红点*/
+            width: 15px;
+            height: 15px;
+            background-image: url("but.png");
+            content: "";
+            display: block;      /*不写这句为啥不显示？？after默认的是inline元素？？inline就不显示了？？*/
+            /*line-height: 25px;  上一句改成inline-block   为啥这句不能使元素垂直居中*/
+            position: absolute;
+            top:5px;
+            right:5px;
+        }
+
+        #search_btu {
+            height: 25px;
+            width: 25px;
+            background-color: teal;
+
+            display: inline-block;
+
+            position: absolute;
+            right: 10px;
+            top:10px;
+
+            cursor: pointer;
+        }
+
+        .item {
+            width: 100%;
+            height: 60px;
+            background-color: coral;
+
+            position: relative;
+        }
+
+        .item:hover {
+            background-color: chocolate;
+        }
+
+        .item .head {
+            width: 45px;
+            height: 45px;
+            background-color: chartreuse;
+            position: absolute;
+            top: 50%;        /*垂直居中*/
+            margin: -22.5px 10px 0;
+
+        }
+        .item .name {
+
+            position: absolute;
+            top: 10px;
+            left: 65px;
+
+        }
+
+        .item .msg {
+
+            position: absolute;
+            bottom: 10px;
+            left: 65px;
+            font-size: 14px;
+        }
+
+        .item .time {
+
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 14px;
+        }
+
+        #right-part {
+            width: 100%;     /*不知道怎么宽度自适应  瞎写的*/
+            height: 100%;
+
+        }
+
+        #top-part {
+            background-color: antiquewhite;
+            height: 80%;
+        }
+
+        #title {
+            background-color: gray;
+            height: 45px;
+            text-align: center;
+            margin-left: 300px;
+
+        }
+
+        #title span {
+            line-height: 45px;
+
+        }
+
+
+
+        #bottom-part {
+            background-color: beige;
+            height: 20%;
+            border-top: solid 1px;
+        }
+
+        #tools {
+            height: 30px;
+            margin-left: 300px;
+
+            font-size: 0;
+        }
+
+        #tools img{
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin: 5px 0 5px 15px;
+        }
+
+        input {
+            margin-left: 300px;
+
+        }
+
+        #send {
+            width: 100px;
+            height: 20px;
+            background-color: crimson;
+            position: absolute;
+            bottom:10px;
+            right: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+
+    <div id="left-part">
+        <img src="but.png" alt="">
+        <img src="but.png" alt="">
+        <img src="but.png" alt="">
+        <img src="but.png" alt="">
+        <img src="but.png" alt="" id="bottom_img">
+    </div>
+
+
+
+    <div id="center-part">
+        <div id="search">
+            <div id="search-kuang">
+                <span>搜索</span>
+            </div>
+            <div id="search_btu"></div>
+        </div>
+
+        <div class="item">
+            <div class="head">
+
+            </div>
+            <span class="name">周杰伦</span>
+            <span class="msg">哈哈哈哈</span>
+            <span class="time">20：25</span>
+        </div>
+        <div class="item">
+            <div class="head">
+
+            </div>
+            <span class="name">周杰伦</span>
+            <span class="msg">哈哈哈哈</span>
+            <span class="time">20：25</span>
+        </div>
+        <div class="item">
+            <div class="head">
+
+            </div>
+            <span class="name">周杰伦</span>
+            <span class="msg">哈哈哈哈</span>
+            <span class="time">20：25</span>
+        </div>
+        <div class="item">
+            <div class="head">
+
+            </div>
+            <span class="name">周杰伦</span>
+            <span class="msg">哈哈哈哈</span>
+            <span class="time">20：25</span>
+        </div>
+    </div>
+
+
+    <div id="right-part">
+        <div id="top-part">
+            <div id="title">
+                <span>周杰伦</span>
+            </div>
+
+        </div>
+        <div id="bottom-part">
+            <div id="tools">
+                <img src="but.png" alt="">
+                <img src="but.png" alt="">
+                <img src="but.png" alt="">
+                <img src="but.png" alt="">
+            </div>
+            <input type="text" id="t">
+            <div id="send" onclick="send()">发送</div>
+        </div>
+    </div>
+
+
+
+</div>
+
+<script>
+
+    var send = function(){
+        var text = document.getElementsByTagName("input");
+        //不知道怎么拿到值，假设拿到了“你好啊啊啊啊”
+
+
+    };
+</script>
+
+
+</body>
+</html>
