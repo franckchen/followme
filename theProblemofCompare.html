@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>判断相等时问题</title>
+</head>
+<body>
+<script>
+    // 返回的是false
+    console.log(NaN === NaN);
+
+    /**
+     * 实际开发中可能会遇到这样的场景,有一个位置数据,我要将这个数据
+     * 转化为数字,如果他不是个数字的话,我需要做一些特殊处理
+     */
+    var unknownData = 'abc';
+    unknownData = +unknownData;
+
+    //如果是这样判断,那么就出事了
+    if (unknownData === NaN) {
+        console.log('not a number');
+    }
+
+    // 正确的做法应该是这样
+    if (isNaN(unknownData)) {
+        console.log('not a number');
+    }
+
+    // 类似的问题还有下例
+    if (+0 === -0) {
+        console.log('Hello');
+    }
+
+    var cf = {
+        name: 'chenfan'
+    };
+    var cf1 = {
+        name: 'chenfan'
+    };
+    // 两个相等的对象,在进行判断的时候被判断为不相等。。。
+    // 原因是js在对对象进行===判断时比较的是地址,不是值
+    console.log(cf === cf1);
+
+    // 最后再唠叨一句,在js中避免使用==,坚持使用===
+</script>
+</body>
+</html>
