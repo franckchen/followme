@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>fixed定位与fixed定位的问题</title>
+    <style>
+        body {
+            margin: 0;
+            /* 设置一个很高的高度，让页面出现滚动条 */
+            height: 2000px;
+        }
+
+        .fixed-top {
+            /* fixed定位参考的一定是浏览器窗口 */
+            /* 滚动滚动条，发现fix-top元素也会随着动 */
+            position: fixed;
+            top: 0;
+            /* 左右宽度盛满浏览器，能够自适应 */
+            left: 0;
+            right: 0;
+            height: 80px;
+            background-color: #f4a460;
+        }
+    </style>
+</head>
+<body>
+    <div class="fixed-top"></div>
+    <div>我是一段文字，我被挡上了，你看不见我，因为fixed定位脱离了文档流，空间被回收，我应该出现在浏览器最顶部，可是...</div>
+</body>
+<script>
+    /**
+     * fixed定位是常考点之一，主要知识点有：
+     * 1.参考浏览器窗口定位
+     * 2.位置被回收，所以会遮挡内容
+     * 3.ie6浏览器不支持
+     * 4.在移动端(也就是手机浏览器)他经常会出问题，最简单的例子就是有些ios下点了输入框，弹出键盘时，它的位置就跑偏了
+     * 5.开发中尽量不要使用fixed定位，因为完全可以用absolute定位和合理的布局，来实现类似于fixed的定位(未来写例子教你)
+     */
+</script>
+</html>
