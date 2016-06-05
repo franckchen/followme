@@ -2,7 +2,14 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>伪元素</title>
+    <title>伪元素第一期 -- before, after</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        /**
+         * 伪类和伪元素是面试的常考点,一定要学会,相关知识较多,需要逐步学习
+         * 一定要知道伪元素是CSS3属性,IE6,7,8不支持
+         */
+    </script>
     <style>
         .item {
             /* 方便未读消息红点定位 */
@@ -19,8 +26,10 @@
 
         /*
          * 1.一个元素可以插入before和after两种伪元素
-         * 2.使用伪元素来实现未读消息红点,好处很简单,不需要写任何HTML元素,能不插入DOM元素
-         * 就最好不插入
+         * 2.使用伪元素来实现未读消息红点,好处是很简单,不需要写任何HTML元素,能不插入DOM元素
+         * 就最好不插入,因为遍历的时候很麻烦
+         * 3.before和after的精髓就是通过css元素在一个dom节点前后插入需要的内容,而这些操作通过
+         * css完成,而不依赖HTML
          */
         .new-msg::after {
             display: block;
@@ -38,11 +47,39 @@
             border-radius: 50%;
             background-color: #ff0000;
         }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        /* 学着手动调节一下,看看伪元素出现的位置 */
+        .cf::after,
+        .cf::before {
+            content: "123";
+        }
+
+        .cf::before {
+            color: #0000ff;
+        }
+
+        .cf::after {
+            color: #008b8b;
+        }
     </style>
 </head>
 <body>
+    <div class="header">实现一个未读消息红点</div>
     <div class="item new-msg">Franck Chan</div>
     <div class="item">Jack Ma</div>
     <div class="item">Robin Li</div>
+
+    <div class="container">
+        <div class="item cf"></div>
+    </div>
+    <script>
+        // 通过js找不到伪元素,这是好处,不影响DOM结构,以后慢慢体会这个好处,length用于查看jQuery选择器查到了多少元素
+        console.log($('.container div').length);
+        console.log($('.container *').length);
+    </script>
 </body>
 </html>
