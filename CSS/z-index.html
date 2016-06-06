@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>z-index</title>
+    <style>
+        /* 假设内外元素宽高一样 */
+        .outer {
+            width: 200px;
+            height: 200px;
+            background-color: #9acd32;
+        }
+
+        .inner {
+            width: 200px;
+            height: 200px;
+            background-color: #ff1493;
+        }
+
+        .inner-1 {
+            position: relative;
+            /* 父亲想遮盖住孩子，一定需要将孩子的z-index设置为-1 */
+            /* -1的意思是出现在一切元素的后面 */
+            z-index: -1;
+        }
+
+        .outer-2 {
+            position: relative;
+        }
+
+        /* 两个孩子都充满父亲 */
+        .inner-2,
+        .inner-3 {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /*
+         * 1.如果去掉z-index属性，注意显示出的颜色一定是.inner-3的颜色，看下面知识点里总结的第一个标准
+         * 2.z-index大的出现在z
+         * 3.在这块多动手自己改一改，体会一下z-index，如去掉z-index,修改z-index,将z-index修改为负值
+         */
+        .inner-2 {
+            z-index: 3;
+            background-color: yellow;
+        }
+        .inner-3 {
+            z-index: 2;
+            background-color: blueviolet;
+        }
+    </style>
+</head>
+<body>
+<!-- 不设置z-index属性的情况下，按常理出牌，孩子更靠近用户,在z轴上更靠前，显示出的是孩子的颜色 -->
+<div class="outer">
+    <div class="inner"></div>
+</div>
+<!-- 我需要要显示出父亲的颜色 -->
+<div class="outer outer-1">
+    <div class="inner inner-1"></div>
+</div>
+<!-- 有两个位置重叠的孩子的场景 -->
+<div class="outer outer-2">
+    <div class="inner inner-2"></div>
+    <div class="inner inner-3"></div>
+</div>
+<script>
+    /**
+     * 知识点
+     * 1.z-index一定只对进行了定位(position属性为static,relative,absolute)的元素生效！
+     * 2.记忆几个简单的显示层级规则
+     * (1)文档流后面的节点会遮盖前面的节点, z轴上，div2会出现在div1前面
+     * <div id="div1"><div>
+     * <div id="div2"><div>
+     * (2)孩子出现在父亲前面
+     * (3)定位了(position: relative, absolute, fixed)的出现在不定位(position:static，也就是默认的)的前面
+     * (4)拼爹原则，爹的z-index高，则在和其他元素重叠时，爹牛的出现在前面
+     * 3.ie6,7 z-index有很多bug
+     */
+</script>
+</body>
+</html>
