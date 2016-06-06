@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>文字超出省略</title>
+    <style>
+        .text-container {
+            margin-bottom: 15px;
+            width: 100px;
+            background-color: #40e0d0;
+        }
+
+        /* 这个也不需要问为什么，背下来就好 */
+        .ellipsis {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+<body>
+    <div class="text-container ellipsis">abcddcgdagdadg dgdadgggdgc ghhff</div>
+    <div class="text-container">abcddcgdagdadg dgdadgggdgc ghhff</div>
+    <script>
+        /**
+         * 知识点
+         * 1.一定要有宽度限制才能出现省略，没有宽度限制是绝对绝对不可能的
+         * 2..ellipsis这个class下的3个属性，不需要问为什么了，背下来就可以了
+         * 3.注意省略是一行超过范围就省略了，如果想多行省略(也就是宽高都限制，超过了才省略)会比较麻烦
+         * 目前只有webkit内核的浏览器支持(chrome,safari)
+         */
+    </script>
+</body>
+</html>
