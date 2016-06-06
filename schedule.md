@@ -32,6 +32,10 @@
 [引用问题](https://github.com/franckchen/followme/blob/master/citeProblem.html)  
 [fixed定位知识点](https://github.com/franckchen/followme/blob/master/CSS/fixed.html)  
 
+**6.06**
+[z-index相关知识点](https://github.com/franckchen/followme/blob/master/CSS/z-index.html)  
+[不依赖box-sizing](https://github.com/franckchen/followme/blob/master/CSS/avoidBoxSizing.html)  
+
 **面授内容**  
 cdn与script跨域  
 js加载  
