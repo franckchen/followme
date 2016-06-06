@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>不依赖box-sizing</title>
+    <script>
+        /**
+         * css3的属性box-sizing让我们能够修改盒模型，实际开发中为我们提供了遍历，比如border-box,在设置了宽度高之后，宽高固定，
+         * padding和border会自动积压宽高所占的空间，避免了无谓的计算，很实用，但其实我们可以不依赖它，而且像ie8等不支持css3
+         * 属性的浏览器，我们也需要学习如何处理这类问题
+         */
+    </script>
+    <style>
+        #cf {
+            box-sizing: border-box;
+            /* 宽高固定 */
+            width: 200px;
+            height: 200px;
+            /* 尝试去修改border和padding的值，然后观察盒模型，尺寸始终保持在200px */
+            border: 2px solid black;
+            padding: 5px;
+            background-color: #20b2aa;
+        }
+
+        #mxy-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+
+        #mxy {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            /* 可以随意调节border和padding看效果 */
+            border: 2px solid black;
+            padding: 5px;
+            background-color: #20b2aa;
+        }
+    </style>
+</head>
+<body>
+    <!-- 这个div所占的宽高一定是200px -->
+    <div id="cf"></div>
+    <!-- 在不支持css3的情况下，我们也能实现，加一个容器就好了，所以不一定要依赖box-sizing,这个技巧要掌握 -->
+    <div id="mxy-container">
+        <div id="mxy"></div>
+    </div>
+</body>
+</html>
