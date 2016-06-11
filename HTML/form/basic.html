@@ -3,18 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <title>表单基础</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <style>
+        .section {
+            margin-bottom: 10px;
+        }
+
+        #mxy {
+            display: block;
+            width: 150px;
+            height: 40px;
+            /* 再次提醒： line-height要和height配合使用，使文字垂直居中 */
+            line-height: 40px;
+            text-align: center;
+            background-color: #40e0d0;
+        }
+
+        /* 应对chrome的怪癖，聚焦时无蓝色边框 */
+        .no-outline {
+            outline: 0;
+        }
+    </style>
 </head>
 <body>
-    <div>
+    <div class="section">
         <!-- 一个空的文字输入框 -->
         <label>
             <input type="text" />
         </label>
     </div>
-    <div>
+    <div class="section">
         <label>
-            <input type="text" value="abc" />
+            <!-- 一个带初始值的输入框，注意value属性 -->
+            <input type="text" value="abc" id="test" />
         </label>
     </div>
+    <div class="section">
+        <!-- 1.注意for属性，对应下面输入框的id 2.点击了label就会聚焦它指定的输入框 3.这是label的第二种写法 -->
+        <label for="cf" id="mxy">点我会聚焦输入框</label>
+        <input type="text" id="cf">
+    </div>
+    <div class="section">
+        <label>
+            <!-- 去除掉聚焦时的讨厌的蓝色边框 -->
+            <input type="text" class="no-outline">
+        </label>
+    </div>
+    <div class="section">
+        <label>
+            <!-- placeholder，文字提示属性，注意这是HTML5的特性，和CSS3,ES5的分割点一样，ie9及以下浏览器不支持 -->
+            <input type="text" placeholder="姓名">
+        </label>
+    </div>
+    <div class="section">
+        <label>
+            <!-- 一个置灰的，无法输入的输入框 -->
+            <input type="text" disabled id="baidu">
+        </label>
+    </div>
+    <script>
+        /**
+         * 通过js获取输入框的内容
+         */
+        var testNode = document.getElementById('test');
+        console.log(testNode.value);
+        // 下面的代码会修改输入框内容
+        // testNode.value = 'Hello Ma Xin Yu';
+
+        // 找到被禁用的输入框
+        var baidu = document.getElementById('baidu');
+        console.log(baidu.disabled);
+        // 下面两种方法都能将输入框解禁
+        // baidu.disabled = false;
+        // baidu.removeAttribute('disabled');
+
+        // jQuery获取输入框内容的方法
+        // $('#testNode').val();
+
+        // jQuery修改输入框内容的方法
+        // $('#testNode).val('cf');
+
+        // jQuery获取置灰状态的方法, 返回true或false
+        // $('#testNode').props('disabled');
+
+        // jQuery修改置灰状态的方法
+        // $('#testNode').props('disabled', true);
+        // $('#testNode').props('disabled', false);
+    </script>
 </body>
 </html>
