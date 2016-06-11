@@ -41,6 +41,9 @@
 [伪类](https://github.com/franckchen/followme/blob/master/CSS/pesudoClass.html)  
 [权重和伪类](https://github.com/franckchen/followme/blob/master/CSS/weight2.html)  
 
+**6.11**
+[html表单操作基础](https://github.com/franckchen/followme/blob/master/HTML/form/basic.html)  
+
 **面授内容**  
 cdn与script跨域  
 js加载  
