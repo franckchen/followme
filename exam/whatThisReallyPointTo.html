@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>this到底指向了什么?</title>
+</head>
+<body>
+<script>
+    /**
+     * 不要去运行代码,分析下列代码的打印结果
+     */
+
+    var cf = function () {
+        return this;
+    };
+    console.log(cf());
+
+    var mxy = {
+        name: 'ma xin yu',
+        getSelf: function () {
+            return this;
+        }
+    };
+    console.log(mxy.getSelf());
+    console.log(mxy.getSelf.call(null));
+
+    cf = {
+        name: 'chenfan'
+    };
+    console.log(mxy.getSelf.call(cf));
+
+    cf = function () {
+        return this
+    };
+
+    var Mxy = function () {
+        this.name ='MaXinyu';
+        this.cf = cf;
+        console.log(this);
+    };
+    mxy = new Mxy();
+    console.log(mxy.cf());
+</script>
+</body>
+</html>
