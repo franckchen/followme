@@ -36,12 +36,12 @@
 [z-index相关知识点](https://github.com/franckchen/followme/blob/master/CSS/z-index.html)  
 [不依赖box-sizing](https://github.com/franckchen/followme/blob/master/CSS/avoidBoxSizing.html)  
 
-**6.10**
+**6.10**  
 [轮播例子](https://github.com/franckchen/followme/blob/master/usefulStuff/imgSlider/index.html)  
 [伪类](https://github.com/franckchen/followme/blob/master/CSS/pesudoClass.html)  
 [权重和伪类](https://github.com/franckchen/followme/blob/master/CSS/weight2.html)  
 
-**6.11**
+**6.11**  
 [html表单操作基础](https://github.com/franckchen/followme/blob/master/HTML/form/basic.html)  
 
 **面授内容**  
