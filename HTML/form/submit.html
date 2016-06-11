@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>表单提交相关</title>
+</head>
+<body>
+<!-- 1.action指定表单提交的后端地址 -->
+<!-- 2.method指定HTTP方法 -->
+<!-- 3.form是一个看不到的容器，包裹在内的input都是要提交的表单项，提交时浏览器自动从中去value值，提供给后端 -->
+<form action="" method="post">
+    <!-- name属性是一个很重要的属性，用于标明提供给后端的数据的字段名，后端根据"number"这个字段名来提取这个input框的value值 -->
+    <div><input type="text" name="number" /></div>
+    <!-- input[type="submit"] 类似于一个按键，按键的文字内容通过value属性来定义，点击后将提交表单 -->
+    <input type="submit" value="提交" />
+    <!-- input[type="rest"] 类似于一个按键，按键的文字内容通过value属性来定义，点击后将清空表单 -->
+    <input type="reset" value="清空表单" />
+</form>
+<script>
+    /**
+     * 常见考点
+     * 1.这种方式的提交是同步提交，区分于ajax,页面会刷新
+     * 2.要想界面不刷新，需要使用ajax
+     */
+</script>
+</body>
+</html>
