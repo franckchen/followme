@@ -40,6 +40,25 @@
     };
     mxy = new Mxy();
     console.log(mxy.cf());
+
+    /**
+     * 下面两个例子千万不要较真，带有误导性
+     */
+    cf = [1];
+    mxy = function () {
+        console.log(this);
+    };
+
+    cf.forEach(mxy);
+
+    mxy = {
+        name: 'ma xin yu',
+        getThis: function () {
+            console.log(this);
+        }
+    };
+
+    cf.forEach(mxy.getThis);
 </script>
 </body>
 </html>
