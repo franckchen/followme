@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>判断一个元素是否具有指定的class</title>
+</head>
+<body>
+<div id="cf" class="mxy"></div>
+<script>
+    var hasClass = function (element, className) {
+        // 要求element必须是html元素
+        if (!element instanceof HTMLElement) {
+            // 学习一下js的异常是怎么抛出的
+            throw new Error('element must be a HTMLElement');
+        }
+
+        if (className === '') {
+            throw new Error('className must not be empty');
+        }
+
+        if (!element || !className) {
+            return false;
+        }
+
+        /**
+         * 高级别浏览器有classList这个东东，如果有的话，直接调用它的api就可以了
+         */
+        if (element.classList) {
+            // classList其他常用的方法有add,remove等等
+            return element.classList.contains(className);
+        }
+
+        // 判断HTML元素的className里是否包含了需要找的类名
+        return element.className.indexOf(className) >= 0;
+    };
+
+    console.log(hasClass(document.getElementById('cf'), 'mxy'));
+</script>
+</body>
+</html>
