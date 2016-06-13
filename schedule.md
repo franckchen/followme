@@ -43,6 +43,14 @@
 
 **6.11**  
 [html表单操作基础](https://github.com/franckchen/followme/blob/master/HTML/form/basic.html)  
+[表单提交相关知识](https://github.com/franckchen/followme/blob/master/HTML/form/submit.html)  
+
+**6.12**  
+[关于this的小测试](https://github.com/franckchen/followme/blob/master/exam/whatThisReallyPointTo.html)  
+
+**6.13**  
+[splice和slice,这是常考的内容](https://github.com/franckchen/followme/blob/master/spliceAndslice.html)  
+[dom操作之判断一个元素是否有某个class](https://github.com/franckchen/followme/blob/master/lib/hasClass.html)  
 
 **面授内容**  
 cdn与script跨域  
