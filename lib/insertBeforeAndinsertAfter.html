@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>指定节点前、后插入新节点</title>
+</head>
+<body>
+<div id="cf"></div>
+<script>
+    /**
+     * 下面的操作是常考点，一定要背下来，很简单的两个操作，能考察面试者对于原生js的熟悉程度
+     */
+
+    // 在指定节点前面插入一个元素
+    var insertBefore = function (target, element) {
+        // 记住，原生js插入DOM节点的方法只有两个！ 1.insertBefore 2.appendChild
+        // insertBefore的调用者是父亲，第一个参数是要插入的元素，第二个参数是参考点，背下来
+        // 忘了的话要复习了~~~
+        target.parentNode.insertBefore(element, target);
+    };
+
+    // 在指定节点后面插入一个元素
+    var insertAfter = function (target, element) {
+        if (target.nextSibling) {
+            target.parentNode.insertBefore(element, target.nextSibling);
+        }
+        else {
+            // 如果改元素已经处于最后的位置，也就是没有后向兄弟可做参考的情况下，为父节点添加一个最靠后的孩子即可
+            target.parentNode.appendChild(element);
+        }
+    };
+
+    // 创建两个新的DOM元素
+    var mxy1 = document.createElement('div');
+    mxy1.className = 'mxy';
+    var mxy2 = document.createElement('div');
+    mxy2.className = 'mxy';
+
+    var cf = document.getElementById('cf');
+    // 插入
+    insertBefore(cf, mxy1);
+    insertAfter(cf, mxy2);
+</script>
+</body>
+</html>
