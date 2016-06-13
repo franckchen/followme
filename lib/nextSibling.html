@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>前后向寻找兄弟节点</title>
+</head>
+<body>
+<div id="cf"></div>
+<div id="mxy"></div>
+<div id="baidu"></div>
+<script>
+    /**
+     * 前向，后向查找兄弟节点是常用的DOM操作，虽然通过jQuery能够简单的实现，但是合格的开发人员
+     * 必须要能够做到不依赖jQuery写出兼容IE6的代码
+     *
+     * 注意这是常用DOM操作，但是不一定会考！
+     */
+
+    // 后向寻找兄弟节点
+    var findNextSibling = function (element) {
+        /**
+         * 1.document.body，获取body DOM元素，这是常用api要背下来，类似的还有document.head
+         * 2.nextElementSibling这个属性记录一个节点的后向兄弟，但是这个属性在ie6-8里没有，所以要做兼容，
+         * 我们首先判断，DOM节点是否有这个属性，如果有直接用，没有就走后面的兼容代码
+         * 3.学会用in进行这类兼容性判断！！
+         */
+        if ('nextElementSibling' in document.body) {
+            return element.nextElementSibling;
+        }
+
+        /**
+         * ie6,7,8和其他一些不支持nextElementSibling属性的代码会走到这里
+         * nextSibling这个属性，浏览器都支持，但是有一个问题，就是文本节点和注释节点，也会当做后向兄弟，记录在
+         * 该属性内，所以要判断nodeType,注意他和nextElementSibling的区别
+         * 无时无刻要记住nodeType=1的节点是html元素
+         */
+        do {
+            element = element.nextSibling
+        }
+        while (element && element.nodeType !== 1);
+
+        return element;
+    };
+
+    console.log(findNextSibling(document.getElementById('mxy')));
+    console.log(findNextSibling(document.body));
+
+    // 前向寻找兄弟节点
+    var findPreviousSibling = function (element) {
+        // 和后向寻找一样的，不赘述了
+        if ('previousElementSibling' in document.body) {
+            return element.previousElementSibling;
+        }
+
+        do {
+            element = element.previousSibling
+        }
+        while (element && element.nodeType !== 1);
+
+        return element;
+    };
+</script>
+</body>
+</html>
