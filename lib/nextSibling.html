@@ -35,7 +35,7 @@
          * 无时无刻要记住nodeType=1的节点是html元素
          */
         do {
-            element = element.nextSibling
+            element = element.nextSibling;
         }
         while (element && element.nodeType !== 1);
 
@@ -53,7 +53,7 @@
         }
 
         do {
-            element = element.previousSibling
+            element = element.previousSibling;
         }
         while (element && element.nodeType !== 1);
 
