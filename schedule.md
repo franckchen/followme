@@ -32,7 +32,7 @@
 [引用问题](https://github.com/franckchen/followme/blob/master/citeProblem.html)  
 [fixed定位知识点](https://github.com/franckchen/followme/blob/master/CSS/fixed.html)  
 
-**6.06**
+**6.06**  
 [z-index相关知识点](https://github.com/franckchen/followme/blob/master/CSS/z-index.html)  
 [不依赖box-sizing](https://github.com/franckchen/followme/blob/master/CSS/avoidBoxSizing.html)  
 
@@ -51,6 +51,10 @@
 **6.13**  
 [splice和slice,这是常考的内容](https://github.com/franckchen/followme/blob/master/spliceAndslice.html)  
 [dom操作之判断一个元素是否有某个class](https://github.com/franckchen/followme/blob/master/lib/hasClass.html)  
+
+**6.14**  
+[常考DOM操作之 -- 查找前后兄弟](https://github.com/franckchen/followme/blob/master/lib/nextSibling.html)  
+[常考DOM操作只 -- 在规定节点前后插入新节点](https://github.com/franckchen/followme/blob/master/lib/insertBeforeAndinsertAfter.html)  
 
 **面授内容**  
 cdn与script跨域  
