@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>name属性</title>
+</head>
+<body>
+<form action="#">
+<div>
+    <!-- 1.radio为单选框 -->
+    <!-- 2.注意label包裹了文字，保证了在点击文字的时候也选中了单项 -->
+    <!-- 3.注意必须有name属性，否则就实现不了单选了, 因为name属性将radio分组，组内
+      的元素只能有一个被选中，而且提供给后端的键值对型数据的键值由name决定 -->
+    <!-- 4.选中的value规定了值，所以加入选中了chenfan,那么表单提交时，后端取到的数据就是cf=chenfan -->
+    <label><input type="radio" name="cf" value="cf" />chenfan</label>
+    <label><input type="radio" name="cf" value="mxy" />maxinyu</label>
+    <label><input type="radio" name="cf" value="baidu" />baidu inc</label>
+</div>
+<div>
+    <!-- 1.区别于radio,checkbox是复选框 -->
+    <!-- 2.加入勾选了陈帆，baidu,后端获取的数据mxy=[cf, baidu] -->
+    <label><input type="checkbox" name="mxy" value="cf" />陈帆</label>
+    <label><input type="checkbox" name="mxy" value="mxy" />xinyu</label>
+    <label><input type="checkbox" name="mxy" value="baidu" />baidu inc</label>
+</div>
+<input type="submit" value="发射！" />
+</form>
+<script>
+    /**
+     * 知识点
+     * 1.name属性第一个作用是规定分组
+     * 2.name属性还用于后端获取数据
+     */
+</script>
+</body>
+</html>
