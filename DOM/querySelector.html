@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>querySelector</title>
+</head>
+<body>
+<div id="cf">
+    <div class="mxy">
+        <div class="mxy"></div>
+    </div>
+    <div class="mxy"></div>
+    <div class="mxy" id="mxy">
+        <div id="baidu"></div>
+    </div>
+    <div class="mxy"></div>
+</div>
+<div>
+    <label><input type="text" disabled /></label>
+</div>
+<script>
+    /**
+     * jQuery库强大的选择器令前端开发，发生了颠覆性的变化，以至于浏览器
+     * 将他的选择器实现成了类似的原生的api -- querySelector和querySelectorAll
+     */
+    // querySelector,查找所有符合选择器规则的元素
+    var mxy = document.querySelectorAll('.mxy');
+
+    /**
+     * 返回的数据类型是NodeList,是类数组，回忆下类数组的遍历应该怎么实现
+     */
+    console.log(mxy);
+    mxy = document.querySelectorAll('#cf>.mxy').length;
+    console.log(mxy);
+
+    // 查不到返回null,区别于jQuery
+    console.log(document.querySelector('#ccc'));
+
+    // 高级一些的选择器
+    mxy = document.querySelectorAll('input:disabled');
+    console.log(mxy);
+    mxy = document.querySelectorAll('input[disabled]');
+    console.log(mxy);
+    mxy = document.querySelectorAll('input[type=text]');
+    console.log(mxy);
+    mxy = document.querySelectorAll('input[type=text]:disabled');
+    console.log(mxy);
+
+    /**
+     * 1.querySelector返回的是符合查询条件的第一个元素
+     * 2.注意querySelectorAll和querySelector的本质区别是返回的数据类型不一样，一个是nodeList一个是HTMLElement!!
+     */
+    mxy = document.querySelector('#mxy');
+    console.log(mxy);
+    mxy = document.querySelector('.mxy');
+    console.log(mxy);
+
+    // querySelector返回的数据类型HTMLElement,HTMLElement,也具有querySelectorAll和querySelector方法，所以可以孩子层筛选
+    // 注意nodeList不具备querySelectorAll和querySelector，所以没法进行过滤筛选
+    mxy = document.querySelector('#mxy').querySelector('#baidu');
+    console.log(mxy);
+
+    /**
+     * 常考点
+     *
+     * 1.IE6,IE7不支持querySelector和querySelectorAll
+     * 2.在移动端开发时，多使用querySelector和querySelectorAll，因为移动端手机浏览器对于这个api兼容性良好，且
+     * 移动端不易引入jQuery(体积大，性能一般)
+     * 3.它的选择器没有jQuery的强大，所以不要奢望jQuery的所有选择器它都能够做到，基本的，常用的都没问题
+     * 4.querySelector的性能低于传统的getElementById、getElementsByTagName、getElementsByClass,所以使用时，
+     * 要注意选择，不要一股脑的傻用
+     */
+</script>
+</body>
+</html>
