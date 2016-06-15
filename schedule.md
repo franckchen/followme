@@ -56,6 +56,10 @@
 [常考DOM操作之 -- 查找前后兄弟](https://github.com/franckchen/followme/blob/master/lib/nextSibling.html)  
 [常考DOM操作只 -- 在规定节点前后插入新节点](https://github.com/franckchen/followme/blob/master/lib/insertBeforeAndinsertAfter.html)  
 
+**6.15**  
+[表单的重要属性 -- name](https://github.com/franckchen/followme/blob/master/HTML/form/name.html)  
+[querySelector API](https://github.com/franckchen/followme/blob/master/DOM/querySelector.html)  
+
 **面授内容**  
 cdn与script跨域  
 js加载  
