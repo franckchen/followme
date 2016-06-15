@@ -35,6 +35,8 @@ canvas基础
 本地存储  
 历史  
 formData  
+表单验证  
+新input  
 
 **工程化**  
 *模块化(AMD,CommonJS)  
