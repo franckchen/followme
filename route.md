@@ -140,3 +140,9 @@ formData
 *chrome工具  
 *git  
 *svn  
+
+**IE6**  
+*bfc  
+*zoom:1  
+*inline-block  
+*ie注释  
