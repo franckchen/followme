@@ -1,0 +1,12 @@
+/* 1.在css中引入css,可以理解为模块化 */
+/* 2.@import一定要在开头写，写在后面没用 */
+@import "./mxy.css";
+/* 注意这里，实时证明，@import引入，相对路径参考点是自身css文件，也就是cf.css，而不是html
+   注意打开sub路径下的index.html观察下 */
+@import "sub/sub.css";
+
+#cf {
+    width: 40px;
+    height: 40px;
+    background-color: #ff1493;
+}
