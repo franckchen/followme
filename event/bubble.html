@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>事件冒泡</title>
+    <style>
+        #cf {
+            width: 600px;
+            height: 600px;
+            margin: 0 auto;
+            background-color: #6495ed;
+            text-align: center;
+        }
+
+        .inner {
+            width: 70%;
+            height: 70%;
+            margin: 0 auto;
+        }
+
+        #mxy {
+            background-color: #ffff00;
+        }
+
+        #baidu {
+            background-color: #98fb98;
+        }
+    </style>
+</head>
+<body>
+<div id="cf">
+    cf
+    <div class="inner" id="mxy">
+        mxy
+        <div class="inner" id="baidu">baidu</div>
+    </div>
+</div>
+<script>
+    var cf = document.getElementById('cf');
+    var mxy = document.querySelector('#mxy');
+    var baidu = document.querySelector('#baidu');
+
+    cf.addEventListener(
+        'click',
+        function () {
+            console.log('cf clicked by bubble');
+        },
+        // 默认是false
+        false
+    );
+
+    cf.addEventListener(
+        'click',
+        function () {
+            console.log('cf clicked by capture');
+        },
+        true
+    );
+
+    mxy.addEventListener(
+        'click',
+        function () {
+            console.log('mxy clicked by bubble');
+        },
+        false
+    );
+
+    mxy.addEventListener(
+        'click',
+        function () {
+            console.log('mxy clicked by capture');
+        },
+        true
+    );
+
+    baidu.addEventListener(
+        'click',
+        function () {
+            console.log('baidu clicked by bubble');
+        }
+    );
+
+    baidu.addEventListener(
+        'click',
+        function () {
+            console.log('baidu clicked by capture');
+        },
+        true
+    );
+
+    baidu.addEventListener(
+        'click',
+        function () {
+            console.log('baidu clicked by capture2');
+        },
+        true
+    );
+</script>
+</body>
+</html>
