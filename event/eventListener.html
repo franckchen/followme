@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>事件绑定</title>
+    <style>
+        #cf {
+            width: 50px;
+            height: 50px;
+            background-color: #e9967a;
+        }
+    </style>
+</head>
+<body>
+<div id="cf"></div>
+<script>
+    var bindEvent = function (element, eventName, listener) {
+        if (window.addEventListener) {
+            bindEvent = element.addEventListener(eventName, listener, false);
+        }
+        // IE
+        else if (window.attachEvent) {
+            bindEvent = element.attachEvent('on' + eventName, listener);
+        }
+        // 上古浏览器
+        else bindEvent = function (element, eventName, listener) {
+            element['on' + eventName] = listener;
+        };
+    };
+
+    var cf = document.getElementById('cf');
+
+    bindEvent(cf, 'click', function () {
+        console.log('hello');
+    });
+</script>
+</body>
+</html>
