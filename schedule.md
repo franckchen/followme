@@ -60,6 +60,9 @@
 [表单的重要属性 -- name](https://github.com/franckchen/followme/blob/master/HTML/form/name.html)  
 [querySelector API](https://github.com/franckchen/followme/blob/master/DOM/querySelector.html)  
 
+**6.16**  
+[css引用](https://github.com/franckchen/followme/blob/master/CSS/import/index.html)  
+
 **面授内容**  
 cdn与script跨域  
 js加载  
