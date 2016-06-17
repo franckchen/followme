@@ -15,7 +15,7 @@
 <div id="cf"></div>
 <script>
     var bindEvent = function (element, eventName, listener) {
-        // w3c
+        // w3c， IE < 9没有这个函数
         if (window.addEventListener) {
             bindEvent = element.addEventListener(eventName, listener, false);
         }

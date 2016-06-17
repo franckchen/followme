@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>阻止默认行为</title>
+    <!-- 注意这里的基础库 -->
+    <script src="./lib.js"></script>
+</head>
+<body>
+<div id="mxy">
+    <a href="http://www.baidu.com" id="cf">百度链接</a>
+</div>
+<script>
+    var cf = document.getElementById('cf');
+
+    cf.addEventListener(
+        'click',
+        function (e) {
+            // 阻止默认行为，<a>标签跳转链接失效
+            e.preventDefault();
+        }
+    );
+
+    var mxy = document.getElementById('mxy');
+    mxy.addEventListener('click', function () {
+        // 注意阻止默认行为不会影响正常冒泡和捕获
+        console.log('mxy mxy mxy');
+    });
+
+    /**
+     * 以下是兼容ie6,7,8 的基础代码，注意ie9开始，ie浏览器的实现遵循了w3c的标准
+     */
+    // bindEvent(cf, 'click', function (e) {
+    //    e = e || window.event;
+
+    //    if (e.preventDefault) {
+    //        e.preventDefault();
+    //    }
+    //    else {
+    //        // ie特有的阻止默认行为的方法
+    //        e.returnValue = false;
+    //    }
+    // });
+    /**
+     * 知识点
+     * 1.如何阻止默认行为
+     * 2.阻止默认行为后不影响冒泡与捕获
+     * 3.ie6,7,8的特殊性和ie9的标准性
+     */
+</script>
+</body>
+</html>
