@@ -15,6 +15,7 @@
 <div id="cf"></div>
 <script>
     var bindEvent = function (element, eventName, listener) {
+        // w3c
         if (window.addEventListener) {
             bindEvent = element.addEventListener(eventName, listener, false);
         }
@@ -26,6 +27,15 @@
         else bindEvent = function (element, eventName, listener) {
             element['on' + eventName] = listener;
         };
+    };
+
+    var bindEvent2 = function (element, eventName, listener) {
+        if (element.addEventListener) {
+            element.addEventListener(eventName, listener, false);
+        }
+        else if (element.attachEvent) {
+            element.attachEvent('on' + eventName, listener);
+        }
     };
 
     var cf = document.getElementById('cf');

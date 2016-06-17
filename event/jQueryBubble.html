@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery事件冒泡</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <style>
+        #cf {
+            width: 600px;
+            height: 600px;
+            margin: 0 auto;
+            background-color: #6495ed;
+            text-align: center;
+        }
+
+        .inner {
+            width: 70%;
+            height: 70%;
+            margin: 0 auto;
+        }
+
+        #mxy {
+            background-color: #ffff00;
+        }
+
+        #baidu {
+            background-color: #98fb98;
+        }
+    </style>
+</head>
+<body>
+<div id="cf">
+    cf
+    <div class="inner" id="mxy">
+        mxy
+        <div class="inner" id="baidu">baidu</div>
+    </div>
+</div>
+<script>
+    var cf = $('#cf');
+    var mxy = $('#mxy');
+    var baidu = $('#baidu');
+
+    cf.on('click', function () {
+        console.log('cf');
+    });
+
+    mxy.on('click', function () {
+        console.log('mxy');
+    });
+
+    baidu.on('click', function () {
+        /**
+         * 1.stopPropagation阻止冒泡，不触发的任何前辈元素上的事件处理函数
+         * 2.stopImmediatePropagation除了阻止冒泡还会阻止其后的事件处理函数的触发，剩余的事件处理函数失效
+         */
+        // e.stopPropagation();
+        // e.stopImmediatePropagation();
+        console.log('baidu');
+    });
+
+    baidu.on('click', function () {
+        // 如果是stopImmediatePropagation,那么之后绑定的事件处理
+        // 也不会执行，走不到这里
+        console.log('baidu again');
+    });
+
+    /**
+     * 知识点
+     * 1.jQuery只有事件冒泡
+     * 2.jQuery统一了事件模型
+     */
+</script>
+</body>
+</html>
