@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>事件代理</title>
+    <style>
+        #container {
+            width: 600px;
+            height: 200px;
+            /* 居中 */
+            margin: 0 auto;
+            /* for inline-block 3px */
+            font-size: 0;
+        }
+
+        #container .item {
+            display: inline-block;
+            width: 33.33%;
+            height: 100%;
+        }
+
+        #cf {
+            background-color: #98fb98;
+        }
+
+        #mxy {
+            background-color: #00bfff;
+        }
+
+        #baidu {
+            background-color: #ff7f50;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="cf" class="item"></div>
+    <div id="mxy" class="item"></div>
+    <div id="baidu" class="item"></div>
+</div>
+<script>
+    var container = document.getElementById('container');
+
+    /**
+     * 事件冒泡至container统一处理 -- 事件代理
+     */
+    container.addEventListener(
+        'click',
+        function (e) {
+            // e.target, w3c标准的当前事件触发对象，是应用于事件代理的关键参数
+            console.log(e.target.id);
+
+            // 事件代理容器本身
+            console.log(this);
+        }
+    );
+
+    /**
+     * 以下是兼容性IE < 9的代码
+     */
+    // bindEvent(
+    //     container,
+    //     function (e) {
+    //         // 只能说万恶的IE
+    //         e = e || window.event;
+    //         // IE特有的srcElement
+    //         var target = e.target || e.srcElement;
+
+    //         console.log(target.id);
+    //     }
+    // );
+</script>
+</body>
+</html>
