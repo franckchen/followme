@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>阻止冒泡</title>
+    <style>
+        #cf {
+            width: 600px;
+            height: 600px;
+            margin: 0 auto;
+            background-color: #6495ed;
+            text-align: center;
+        }
+
+        .inner {
+            width: 70%;
+            height: 70%;
+            margin: 0 auto;
+        }
+
+        #mxy {
+            background-color: #ffff00;
+        }
+
+        #baidu {
+            background-color: #98fb98;
+        }
+    </style>
+    <script src="./lib.js"></script>
+</head>
+<body>
+<div id="cf">
+    cf
+    <div class="inner" id="mxy">
+        mxy
+        <div class="inner" id="baidu">baidu</div>
+    </div>
+</div>
+<script>
+    var cf = document.getElementById('cf');
+    var mxy = document.getElementById('mxy');
+    var baidu = document.getElementById('baidu');
+
+    cf.addEventListener(
+        'click',
+        function () {
+            console.log('cf');
+        },
+        // 再次强调这个false的用途和这个参数的默认值,默认是false
+        // true--捕获阶段的事件处理，false--冒泡阶段的事件处理
+        false
+    );
+
+    mxy.addEventListener(
+        'click',
+        function () {
+            console.log('mxy');
+        },
+        false
+    );
+
+    baidu.addEventListener(
+        'click',
+        function (e) {
+            // 注意点击了baidu以后，cf和mxy上的事件绑定不触发
+            console.log('baidu');
+            // w3c标准的阻止冒泡，chrome,FF,safari都遵循，唯独老ie....
+            e.stopPropagation();
+        }
+        // 第三个参数默认是false
+    );
+
+    // 以下是兼容性代码，保证在IE < 9下可以运行
+    // bindEvent(cf, 'click', function (e) {
+    //    e = e || window.event;
+
+    //    if (e.stopPropagation) {
+    //        e.stopPropagation();
+    //    }
+    //    else {
+    //        // IE < 9时代特有的阻止冒泡的方式
+    //        e.cancelBubble = true;
+    //    }
+    // });
+</script>
+</body>
+</html>
