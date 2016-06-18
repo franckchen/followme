@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>transition动画</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <style>
+        html,
+        body {
+            position: relative;
+            margin: 0;
+            height: 100%;
+        }
+
+        .animation {
+            margin-bottom: 8px;
+            width: 50px;
+            height: 50px;
+            background-color: #daa520;
+        }
+
+        .linear {
+            transition: all 1s linear;
+        }
+
+        .ease {
+            transition: all 1s ease;
+        }
+
+        .ease-in {
+            transition: all 1s ease-in;
+        }
+
+        .ease-out {
+            transition: all 1s ease-out;
+        }
+
+        .ease-in-out {
+            transition: all 1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+<div class="animation linear">linear</div>
+<div class="animation ease">ease</div>
+<div class="animation ease-in">ease-in</div>
+<div class="animation ease-out">ease-out</div>
+<div class="animation ease-in-out">ease-in-out</div>
+<button id="mxy">点我播放动画</button>
+<script>
+    var cf = $('.animation');
+
+    var mxy = $('#mxy');
+
+    mxy.on('click', function () {
+        cf.css({
+            width: '500px'
+        });
+    });
+    /**
+     * 知识点
+     *
+     * transition属性动画的优势
+     * 1.自带贝塞尔曲线
+     * 2.使用十分简单
+     * 3.帧数稳定，不需要控制
+     *
+     * transition属性动画的劣势
+     * 1.动画播放状态无法掌控
+     * 2.对于属性依赖太强
+     */
+</script>
+</body>
+</html>

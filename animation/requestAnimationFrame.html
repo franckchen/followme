@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>模拟动画效果</title>
+    <title>requestAnimationFrame</title>
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <style>
         html,
@@ -16,9 +16,7 @@
             position: absolute;
             width: 50px;
             height: 50px;
-            top: 0;
-            left: 0;
-            background-color: #98fb98;
+            background-color: #daa520;
         }
     </style>
 </head>
@@ -27,16 +25,11 @@
 <script>
     var cf = $('#cf');
 
-    var timer = null;
-
-    var max = 600;
     var mxy = function () {
         // 获取left css属性的当前值
         var left = parseInt(cf.css('left'));
 
         if (left >= 600) {
-            // 对null调用clearTimeout是无害的
-            clearTimeout(timer);
             return;
         }
 
@@ -45,10 +38,18 @@
             left: '+=5'
         });
 
-        setTimeout(mxy, 15);
+        // 注意与setTimeout实现的动画相区别，自动保持帧数，所以参数一定要是动画函数
+        requestAnimationFrame(mxy);
     };
 
     mxy();
+
+    /**
+     * 知识点
+     *
+     * 1.requestAnimationFrame专用于实现动画，自动延迟调用函数，保持动画处于一个良好的帧数
+     * 2.requestAnimationFrame兼容性很差，使用前一定要调研是否支持
+     */
 </script>
 </body>
 </html>
