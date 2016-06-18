@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>AMD规范基础例子</title>
+    <script src="//cdn.bootcss.com/require.js/2.2.0/require.js"></script>
+    <script>
+        require.config({
+            baseUrl: '.',
+            // 注意有s
+            paths: {
+                // 注意paths的key值必须是小写
+                newcf: 'lib/v1.0'
+            },
+            // 注意有s
+            packages: [
+                {
+                    name: 'cf',
+                    location: './lib',
+                    main: 'cf'
+                },
+                {
+                    name: 'mxy',
+                    location: './lib',
+                    main: 'mxy'
+                },
+                {
+                    name: 'newCF',
+                    location: 'newCF',
+                    main: 'cf'
+                }
+            ]
+        });
+    </script>
+</head>
+<body>
+<script>
+    require(['main', 'newcf/cf']);
+</script>
+</body>
+</html>
