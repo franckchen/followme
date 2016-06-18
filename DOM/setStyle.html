@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>设置样式</title>
+    <style>
+        #cf {
+            width: 60px;
+            height: 60px;
+            background-color: #e9967a;
+        }
+
+        #mxy {
+            width: 60px;
+            height: 60px;
+            background-color: #98fb98;
+        }
+    </style>
+</head>
+<body>
+<div id="cf"></div>
+<div id="mxy" style="color: red"></div>
+<script>
+    var cf = document.getElementById('cf');
+    var mxy = document.getElementById('mxy');
+
+    // 给cf这个元素添加个行内样式，注意js只能修改行内样式
+    cf.style.width = '200px';
+
+    // style属性也能够获取样式，但是获取到的只是行内样式
+    console.log(mxy.style.color);
+    console.log(mxy.style.height); // 因为不是行内样式，所以无法获取
+    /**
+     * 调整背景色，注意这里是驼峰命名，因为mxy.style.background-color在js中是非法的(-被识别为减号)
+     * 所以style属性的css属性都是驼峰命名的，访问和修改都需要遵守驼峰规则
+     */
+    mxy.style.backgroundColor = 'blue';
+
+    /**
+     * 必考点
+     *
+     * 1.元素的style属性用于修改样式，不能用于获取样式，即使获取，获取到的也是行内样式
+     * 2.通过js修改的一定是行内样式
+     * 3.驼峰
+     */
+</script>
+</body>
+</html>
