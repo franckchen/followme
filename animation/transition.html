@@ -14,6 +14,8 @@
 
         .animation {
             margin-bottom: 8px;
+            /* transition动画对于属性值要求苛刻，如果注释掉width属性则动画失效 */
+            /* 所以说transition动画实质是平滑过渡属性变化，依赖变化前后属性均有固定值 */
             width: 50px;
             height: 50px;
             background-color: #daa520;
