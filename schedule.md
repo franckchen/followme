@@ -63,6 +63,9 @@
 **6.16**  
 [css引用](https://github.com/franckchen/followme/blob/master/CSS/import/index.html)  
 
+**6.18**  
+[获取元素的CSS样式](https://github.com/franckchen/followme/blob/master/DOM/getStyle.html)  
+
 **面授内容**  
 cdn与script跨域  
 js加载  
