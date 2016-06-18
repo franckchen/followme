@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Promise</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <style>
+        html,
+        body {
+            position: relative;
+            margin: 0;
+            height: 100%;
+        }
+
+        #cf {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 40px;
+            height: 40px;
+            background-color: #e9967a;
+        }
+    </style>
+</head>
+<body>
+<div id="cf"></div>
+<script>
+    var cf = $('#cf');
+
+    var limit = 600;
+    var moveRight = function (cb) {
+        // 获取left css属性的当前值
+        var left = parseInt(cf.css('left'));
+
+        if (left >= 600) {
+            // 执行回调函数
+            cb();
+            return;
+        }
+
+        // 向右移动5px
+        cf.css({
+            left: '+=5'
+        });
+
+        setTimeout(
+            function () {
+                moveRight(cb);
+            },
+            15
+        );
+    };
+
+    var moveBottom = function (cb) {
+        // 获取left css属性的当前值
+        var top = parseInt(cf.css('top'));
+
+        if (top >= 600) {
+            // 执行回调函数
+            cb();
+            return;
+        }
+
+        // 向右移动5px
+        cf.css({
+            top: '+=5'
+        });
+
+        setTimeout(
+            function () {
+                moveBottom(cb);
+            },
+            15
+        );
+    };
+
+    var moveLeft = function (cb) {
+        // 获取right css属性的当前值
+        var left = parseInt(cf.css('left'));
+
+        if (left <= 0) {
+            // 执行回调函数
+            cb();
+            return;
+        }
+
+        // 向右移动5px
+        cf.css({
+            left: '-=5'
+        });
+
+        setTimeout(
+            function () {
+                moveLeft(cb);
+            },
+            15
+        );
+    };
+
+    var moveTop = function (cb) {
+        // 获取right css属性的当前值
+        var top = parseInt(cf.css('top'));
+
+        if (top <= 0) {
+            // 执行回调函数
+            cb();
+            return;
+        }
+
+        // 向右移动5px
+        cf.css({
+            top: '-=5'
+        });
+
+        setTimeout(
+            function () {
+                moveTop(cb);
+            },
+            15
+        );
+    };
+
+    // 回调嵌回调，pyramid of doom
+//    moveRight(function () {
+//        console.log('move left over');
+//        moveBottom(function () {
+//            console.log('move bottom over');
+//            moveLeft(function () {
+//                console.log('move left over');
+//                moveTop(function () {
+//                    console.log('move top over');
+//                })
+//            });
+//        });
+//    });
+
+    var promise = $.Deferred();
+    var promiseFuc = function () {
+
+        // 获取left css属性的当前值
+        var left = parseInt(cf.css('left'));
+
+        if (left >= 600) {
+            // 执行回调函数
+            promise.resolve();
+            return;
+        }
+
+        // 向右移动5px
+        cf.css({
+            left: '+=5'
+        });
+
+        setTimeout(
+            function () {
+                promiseFuc();
+            },
+            15
+        );
+
+        return promise;
+    };
+
+    promiseFuc();
+
+    promise.then(function () {
+        console.log('move over');
+    });
+</script>
+</body>
+</html>
