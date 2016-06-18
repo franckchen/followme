@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>获取元素CSS样式</title>
+    <style>
+        #cf {
+            width: 100px;
+            height: 100px;
+            background-color: #e9967a;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+<div id="cf"></div>
+<script>
+    var cf = document.getElementById('cf');
+
+    /**
+     * 获取计算样式值
+     *
+     * @param {HTMLElement} element 目标元素
+     * @param {string} key 样式名称
+     * @return {string} 样式值
+     */
+    var getStyle = function (element, key) {
+        if (!element) {
+            return '';
+        }
+
+        // nodeType为9的元素就是Document
+        var doc = element.nodeType === 9
+                ? element
+                // ownerDocument -- 元素所属的document, 这样做是为了防止跨iframe
+                : element.ownerDocument || element.document;
+
+        // defaultView其实就是window
+        if (doc.defaultView && doc.defaultView.getComputedStyle) {
+            var styles = doc.defaultView.getComputedStyle(element, null);
+
+            if (styles) {
+                return styles[key] || styles.getPropertyValue(key);
+            }
+        }
+        // 又是万恶的IE, IE < 9不支持getComputedStyle,只有currentStyle
+        else if (element && element.currentStyle) {
+            return element.currentStyle[key];
+        }
+
+        // 什么都查不到的话
+        return '';
+    };
+
+    console.log(getStyle(cf, 'border'));
+</script>
+</body>
+</html>

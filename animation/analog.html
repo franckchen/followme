@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>模拟动画效果</title>
+    <style>
+        html,
+        body {
+            position: relative;
+            margin: 0;
+            height: 100%;
+        }
+
+        #cf {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            top: 0;
+            left: 0;
+            background-color: #98fb98;
+        }
+    </style>
+</head>
+<body>
+<div id="cf"></div>
+<script>
+    var cf = document.getElementById('cf');
+
+    var timer = null;
+
+    var max = 600;
+    var mxy = function () {
+        var left = parseInt(cf.style.left);
+
+        if (left >= 600) {
+            // 对null调用clearTimeout是无害的
+            clearTimeout(timer);
+            return;
+        }
+
+        // 向右移动5px
+        cf.style.left = left + 5 + 'px';
+
+        setTimeout(mxy, 15);
+    };
+
+    mxy();
+</script>
+</body>
+</html>
