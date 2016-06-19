@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>深入链的理解</title>
+</head>
+<body>
+<script>
+    var mxy;
+
+    var cf = function () {
+        var a = 0;
+
+        mxy = function () {
+            return a++;
+        };
+    };
+
+    cf();
+
+    console.log(mxy());
+    console.log(mxy());
+    console.log(mxy());
+    console.log(mxy());
+    console.log(mxy());
+    console.log(mxy());
+
+    /**
+     * 知识点
+     *
+     * 1.闭包和return function一丁点关系都没有
+     * 2.这个例子满足闭包形成的关键 -- 外层掌握操作函数内部作用域内某变量的方法
+     */
+</script>
+</body>
+</html>

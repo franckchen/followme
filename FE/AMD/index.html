@@ -3,20 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>AMD规范基础例子</title>
+    <!-- AMD是规范，require是实现 -->
     <script src="//cdn.bootcss.com/require.js/2.2.0/require.js"></script>
     <script>
+        /**
+         * require.config用于配置
+         */
         require.config({
+            // 设定包的相对路径起点，之后包的location全部参考这个位置开始推算
             baseUrl: '.',
             // 注意有s
             paths: {
-                // 注意paths的key值必须是小写
+                // 给路径起个别名，避免重复写超长的路径，注意paths的key值必须是小写
                 newcf: 'lib/v1.0'
             },
             // 注意有s
             packages: [
                 {
+                    // 包名
                     name: 'cf',
+                    // 包的路径
                     location: './lib',
+                    // 包的入口文件
                     main: 'cf'
                 },
                 {
@@ -25,8 +33,8 @@
                     main: 'mxy'
                 },
                 {
-                    name: 'newCF',
-                    location: 'newCF',
+                    name: 'newcf',
+                    location: 'newcf',
                     main: 'cf'
                 }
             ]
@@ -35,6 +43,9 @@
 </head>
 <body>
 <script>
+    /**
+     * 程序入口,注意require的第一个参数为数组时是告知程序入口点，入口点可以有多个
+     */
     require(['main', 'newcf/cf']);
 </script>
 </body>
