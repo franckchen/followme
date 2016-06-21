@@ -66,6 +66,9 @@
 **6.18**  
 [获取元素的CSS样式](https://github.com/franckchen/followme/blob/master/DOM/getStyle.html)  
 
+**6.21**  
+[less入门](https://github.com/franckchen/followme/blob/master/CSS/preprocessor/lessGetStart.less)  
+
 **面授内容**  
 cdn与script跨域  
 js加载  
