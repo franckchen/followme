@@ -1,0 +1,71 @@
+/**
+ * less入门
+ * 一定要记住，下面演示的语法特性是css不具备的！提供额外的语法，这就是前处理器存在的意义
+ */
+
+// 注意less可以这样子注释~，比css原生注释方法强很多，回忆一下css写注释有多痛苦
+
+/**
+ * 安装less，只需要在命令行执行：npm i -g less
+ */
+
+// 定义一个变量，只要此处修改，颜色整体就会更新了，很方便
+@cf: #f938ab;
+@mxy: 50px;
+
+/**
+ * 注意center这段代码，即可当做一个class使用也可以混入其他代码中
+ */
+.center {
+    margin: 0 auto;
+    text-align: center;
+}
+
+/**
+ * 这段代码同样可以作为混入(mixin)使用,区别在于最终编译生成的代码里
+ * 不会有.border这个选择器，也就是不生成目标代码，只能作为混用使用, 不能用作class
+ * 这一点区别于上面的写法
+ */
+.border() {
+    border: 1px solid #000;
+}
+
+.cf {
+    // 使用变量
+    color: @cf;
+
+    // 嵌套式写法，相当于css的 .cf .mxy,写起来更简洁了，注意观察编译结果
+    .mxy {
+        // less支持计算
+        width: @mxy - 20;
+        background: @cf;
+        // 混入，mixin
+        .center();
+        .border();
+    }
+
+    // &代表自身，相当于.cf:hover
+    &:hover {
+        // less自带一些常用函数，其中darken是最常用的一个，它的作用是将一个颜色加深一定程度
+        // 本例的作用是当鼠标浮于.cf上时，文字颜色加深，这是前端很常见的一个需求
+        color: darken(@cf, 10%);
+    }
+}
+
+.baidu {
+    // extend语法，将自身设置为.cf一样的样式，观察输出结果
+    &:extend(.cf);
+}
+
+.baidu2 {
+    // 添加了all参数，.cf下的.mxy和hover也会被继承，注意观察输出结果
+    &:extend(.cf all);
+}
+
+/**
+ * 运行方法
+ *
+ * 安装完成后，便可运行lessc指令编译less代码
+ * lessc xxx.less -- 编译less
+ * lessc xxx.less > xxx.css -- 编译less并存成指定文件
+ */
