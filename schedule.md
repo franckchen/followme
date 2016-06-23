@@ -69,6 +69,11 @@
 **6.21**  
 [less入门](https://github.com/franckchen/followme/blob/master/CSS/preprocessor/lessGetStart.less)  
 
+**6.23**  
+[前端动画之setTimeout、setInterval](https://github.com/franckchen/followme/blob/master/animation/analog.html)  
+[前端动画之transition](https://github.com/franckchen/followme/blob/master/animation/transition.html)  
+[前端动画之requestAnimationFrame](https://github.com/franckchen/followme/blob/master/animation/requestAnimationFrame.html)  
+
 **面授内容**  
 cdn与script跨域  
 js加载  
