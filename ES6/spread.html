@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>扩展</title>
+</head>
+<body>
+<script>
+    let cf = [1, 2, 3];
+    console.log(...cf);
+
+    let mxy = (a, b, c) => {
+        console.log(a);
+        console.log(b);
+        console.log(c);
+    }
+
+    mxy(...cf);
+
+    let baidu = [4, 5, 6];
+
+    let merged = [...cf, ...baidu];
+    console.log(merged);
+</script>
+</body>
+</html>

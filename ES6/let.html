@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>let</title>
+</head>
+<body>
+<script>
+    let a = 0;
+    let c = 5;
+
+    for (a = 0; a < 10; a++) {
+        let a = 2;
+        // b的作用域被限制在里层{}内
+        let b = 5;
+        // 可以访问到
+        console.log(c);
+    }
+
+    if (true) {
+        // 可以用于解决命名冲突
+        let d = 5;
+    }
+
+    console.log(d);
+    console.log(a);
+    console.log(b);
+</script>
+</body>
+</html>

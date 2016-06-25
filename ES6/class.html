@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>class</title>
+</head>
+<body>
+<script>
+    class Cf {
+        constructor(name) {
+            this.name = name;
+        }
+
+        getName() {
+            console.log(this.name);
+        }
+    }
+
+    let cf = new Cf('chen fan');
+
+    cf.getName();
+
+    class Mxy extends Cf{
+        constructor(name, sex) {
+            super(name);
+
+            this.sex = sex;
+        }
+
+        getName() {
+            console.log(this.name);
+            console.log('override');
+        }
+    }
+
+    let mxy = new Mxy('ma xin yu', 'female');
+
+    mxy.getName();
+</script>
+</body>
+</html>

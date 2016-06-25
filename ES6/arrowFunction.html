@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>箭头函数</title>
+</head>
+<body>
+<script>
+    let cf = {
+        name: 'chen fan',
+        getName() {
+            console.log(this.name);
+        }
+    };
+
+    cf.getName();
+
+    const mxy = () => {
+        console.log('ma xin yu');
+    }
+
+    mxy();
+
+    let myArray = [1, 2, 3];
+    myArray = myArray.map(value => value * 2);
+
+    console.log(myArray);
+</script>
+</body>
+</html>

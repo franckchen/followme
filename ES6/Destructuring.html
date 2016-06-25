@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>解构</title>
+</head>
+<body>
+<script>
+    let cf = {
+        name: 'chenfan',
+        age: 28
+    };
+
+    let {name, age} = cf;
+
+    console.log(name);
+    console.log(age);
+
+    let mxy = ({name, age}) => {
+        console.log(name);
+        console.log(age);
+    }
+
+    mxy(cf);
+
+    let {name: myName} = cf;
+
+    console.log(myName);
+
+    ({name: myName} = cf);
+
+    console.log(myName);
+
+    cf = [1, 2, 3];
+
+    let [a, b, c] = cf;
+
+    console.log(c);
+
+    let {x = 1, y = 2} = {};
+
+    console.log(x, y);
+</script>
+</body>
+</html>
