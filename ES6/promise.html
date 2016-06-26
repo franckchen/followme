@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    var mxy = function () {
+        return new Promise(function (resolve, reject) {
+            setTimeout(
+                resolve,
+                2000
+            );
+        });
+    };
+
+    mxy().then(
+        function () {
+            console.log(1);
+
+            return mxy();
+        }
+    ).then(
+        function () {
+            console.log(2);
+
+            return mxy();
+        }
+    ).then(function () {
+        console.log(3);
+    });
+</script>
+</body>
+</html>
