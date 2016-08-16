@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>bfc</title>
+    <style>
+        .container {
+            width: 400px;
+            height: 400px;
+        }
+
+        .float {
+            float: left;
+            width: 100px;
+            height: 100px;
+            background-color: #ffa500;
+        }
+
+        .main {
+            height: 400px;
+            background-color: #00bfff;
+        }
+
+        /**
+         * 触发bfc的条件:
+         * float属性不为none
+         * position为absolute或fixed
+         * display为inline-block, table-cell, table-caption, flex, inline-flex
+         * overflow不为visible
+         */
+        .bfc {
+            overflow: hidden;
+        }
+    </style>
+    <script>
+        /**
+         * bfc的核心
+         * 1.页面中的一块渲染区域，并且有一套渲染规则
+         * 2.BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。
+         * 3.BFC的区域不会与float box重叠
+         */
+    </script>
+</head>
+<body>
+<!-- main没有生成新的bfc,会产生重叠 -->
+<div class="container">
+    <div class="float"></div>
+    <div class="main"></div>
+</div>
+<!-- main通过设置overflow触发了bfc,不重叠了 -->
+<div class="container">
+    <div class="float"></div>
+    <div class="main bfc"></div>
+</div>
+</body>
+</html>
